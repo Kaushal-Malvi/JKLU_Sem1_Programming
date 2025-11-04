@@ -47,3 +47,10 @@ This repository is intended as a reference for:
 1. Clone or download the repo:  
    ```bash
    git clone https://github.com/Kaushal-Malvi/JKLU_SEM1_PROGRAMMING.git
+
+
+## 📬 Connect With Me
+
+[![Instagram](https://img.shields.io/badge/Instagram-Follow-orange?logo=instagram)](https://instagram.com/k4ushal.06)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?logo=linkedin)](https://linkedin.com/in/kaushal-malvi-353910356)
+
