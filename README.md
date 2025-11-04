@@ -1,6 +1,6 @@
 # JKLU_SEM1_PROGRAMMING
 
-A collection of Python programs from Semester 1 at **JK Lakshmipat University (JKLU)**.  
+A collection of Python programs from Semester 1 (2025-29) at **JK Lakshmipat University (JKLU)**.  
 This repository contains solutions to lab assignments, in-class practice problems, and additional reference code to help students understand foundational programming concepts.
 
 ---
