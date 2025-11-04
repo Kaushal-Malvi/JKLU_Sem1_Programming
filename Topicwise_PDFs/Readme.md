@@ -9,12 +9,20 @@ Each file covers syntax, examples, common mistakes, and practice questions.
 
 | # | Topic | File |
 |---|--------|------|
-| 1 | Strings | `String.pdf` |
-| 2 | Lists | `Lists.pdf` |
-| 3 | Tuples | `Tuples.pdf` |
-| 4 | Sets & Dictionaries | `Sets & Dictionaries.pdf` |
+| 1 | Algorithms & Flowcharts | `Algorithms & Flowcharts.pdf` |
+| 2 | Operators & Expressions | `Operators & Expressions.pdf` |
+| 3 | Loops | `Loops.pdf` |
+| 4 | Functions | `Functions.pdf` |
+| 5 | Files I/O | `Files IO.pdf` |
+| 6 | Modules & Packages | `Modules & Packages.pdf` |
+| 7 | Strings | `String.pdf` |
+| 8 | Lists | `Lists.pdf` |
+| 9 | Tuples | `Tuples.pdf` |
+| 10 | Sets & Dictionaries | `Sets & Dictionaries.pdf` |
 
----
+*(Slides will be updated as more topics are added)*
+
+----
 
 ## 🔎 What’s inside each slide?
 
