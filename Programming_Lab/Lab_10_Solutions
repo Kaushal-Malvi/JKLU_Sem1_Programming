@@ -1,0 +1,319 @@
+# ==============================================================
+# Q1. Define a function are_anagrams(s1, s2) that returns True/False
+#     based on whether the two strings are anagrams.
+# ==============================================================
+
+print("\n========== Q1: ANAGRAM CHECK ==========\n")
+
+def clean_string(text):
+    cleaned = ""
+    for character in text.lower():
+        if character.isalnum():       # keep only letters/numbers
+            cleaned += character
+    return cleaned
+
+def are_anagrams(first, second):
+    first_cleaned = clean_string(first)
+    second_cleaned = clean_string(second)
+
+    if len(first_cleaned) != len(second_cleaned):
+        return False
+    
+    frequency = {}
+    for character in first_cleaned:
+        if character not in frequency:
+            frequency[character] = 1
+        else:
+            frequency[character] += 1
+
+    for character in second_cleaned:
+        if character not in frequency or frequency[character] == 0:
+            return False
+        frequency[character] -= 1
+    
+    return True
+
+
+text1 = input("Enter first word or phrase: ")
+text2 = input("Enter second word or phrase: ")
+
+print("Anagrams?", are_anagrams(text1, text2))
+
+# Explanation:
+# - We first remove spaces and punctuation, convert to lowercase.
+# - If lengths differ after cleanup → cannot be anagrams.
+# - Count frequency of characters in first string.
+# - Reduce counts while scanning second string → mismatch means False.
+# - If all characters cancel out, strings are anagrams.
+
+
+
+# ==============================================================
+# Q2. Define is_triple_consecutive(word) that checks if any three
+#     consecutive letters in the string are alphabetically continuous.
+# ==============================================================
+
+print("\n========== Q2: TRIPLE CONSECUTIVE LETTER CHECK ==========\n")
+
+def is_triple_consecutive(word):
+    uppercase_word = word.strip().upper()
+
+    if len(uppercase_word) < 3:
+        return False
+
+    for index in range(len(uppercase_word) - 2):
+        first = ord(uppercase_word[index])
+        second = ord(uppercase_word[index + 1])
+        third = ord(uppercase_word[index + 2])
+
+        if first + 1 == second and second + 1 == third:
+            return True
+
+    return False
+
+
+text = input("Enter a word: ")
+print("Contains consecutive triplet?", is_triple_consecutive(text))
+
+# Explanation:
+# - Convert to uppercase for consistent ASCII comparison.
+# - ord() gives numeric code of character, allows A→B→C detection.
+# - Loop stops at len-2 so we can check triplets safely.
+# - Return True immediately if any three letters follow sequence.
+# - Works only for letters A–Z, digits ignored automatically.
+
+
+
+# ==============================================================
+# Q3. Circular shift a list of N integers by k positions, left or right.
+# ==============================================================
+
+print("\n========== Q3: CIRCULAR SHIFT LIST ==========\n")
+
+def shift_left(values, k):
+    length = len(values)
+    k = k % length
+    return values[k:] + values[:k]
+
+def shift(values, k, direction):
+    length = len(values)
+    k = k % length
+    if direction == "left":
+        return values[k:] + values[:k]
+    else:
+        return values[length - k:] + values[:length - k]
+
+
+number_count = int(input("Enter number of elements: "))
+data = []
+
+for index in range(number_count):
+    number = int(input("Enter number: "))
+    data.append(number)
+
+shift_value = int(input("Enter shift value: "))
+direction_input = input("Enter direction (left/right): ").lower()
+
+print("Shifted result:", shift(data, shift_value, direction_input))
+
+# Explanation:
+# - For safe shifting, k is reduced using k % length.
+# - Left shift = cut first k items and append them at end.
+# - Right shift = take last k items and place them in front.
+# - No loops needed here, just slicing logic (allowed by question).
+# - User chooses both the amount and direction of shifting.
+
+
+
+# ==============================================================
+# Q4. Make a calculator function that takes two numbers and an
+#     operator (+, -, *, /) and returns the result.
+# ==============================================================
+
+print("\n========== Q4: CALCULATOR FUNCTION ==========\n")
+
+def calculate():
+    first = float(input("Enter first number: "))
+    second = float(input("Enter second number: "))
+    operator = input("Enter operator (+, -, *, /): ")
+
+    if operator == "+":
+        return first + second
+    elif operator == "-":
+        return first - second
+    elif operator == "*":
+        return first * second
+    elif operator == "/":
+        return first / second
+    else:
+        print("Invalid operator")
+        return None
+
+result = calculate()
+print("Result =", result)
+
+# Explanation:
+# - Function handles input and returns computed result.
+# - Division is normal floating division, no special handling.
+# - If invalid operator entered, function returns None gracefully.
+# - No eval(), no unsafe operations.
+
+
+
+# ==============================================================
+# Q5. Print all prime numbers between L and U and return their sum.
+# ==============================================================
+
+print("\n========== Q5: PRIMES IN RANGE + SUM ==========\n")
+
+def is_prime(number):
+    if number <= 1:
+        return False
+    if number <= 3:
+        return True
+    if number % 2 == 0 or number % 3 == 0:
+        return False
+
+    factor = 5
+    while factor * factor <= number:
+        if number % factor == 0 or number % (factor + 2) == 0:
+            return False
+        factor += 6
+    return True
+
+def primes_in_range(lower, upper):
+    total = 0
+    for value in range(lower, upper + 1):
+        if is_prime(value):
+            print(value, end=" ")
+            total += value
+    print()
+    return total
+
+lower_limit = int(input("Enter lower limit: "))
+upper_limit = int(input("Enter upper limit: "))
+
+sum_of_primes = primes_in_range(lower_limit, upper_limit)
+print("Sum of primes =", sum_of_primes)
+
+# Explanation:
+# - Efficient 6k ± 1 prime test avoids slow full-loop checking.
+# - primes_in_range prints primes and accumulates sum.
+# - Prints primes in one line, result sum separately.
+# - Works for any positive range where lower ≤ upper.
+
+
+
+# ==============================================================
+# Q6. Parse datetime string "MM/DD/YYYY HH:MM:SS" and print:
+#     (1) DD/MM/YYYY, (2) HH:MM:SS, (3) MM/YYYY, (4) AM/PM
+#     → Must validate format correctness.
+# ==============================================================
+
+print("\n========== Q6: DATETIME PARSE + VALIDATION ==========\n")
+
+def validate_datetime(text):
+    if " " not in text:
+        return None
+    
+    date_part, time_part = text.split(" ", 1)
+
+    if date_part.count("/") != 2:
+        return None
+    month_str, day_str, year_str = date_part.split("/")
+    if not (month_str.isdigit() and day_str.isdigit() and year_str.isdigit()):
+        return None
+    
+    month = int(month_str)
+    day = int(day_str)
+    year = int(year_str)
+
+    if not (1 <= month <= 12):
+        return None
+    
+    is_leap = (year % 400 == 0) or (year % 4 == 0 and year % 100 != 0)
+    month_days = [31, 29 if is_leap else 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+
+    if not (1 <= day <= month_days[month - 1]):
+        return None
+
+    if time_part.count(":") != 2:
+        return None
+    hour_str, minute_str, second_str = time_part.split(":")
+    if not (hour_str.isdigit() and minute_str.isdigit() and second_str.isdigit()):
+        return None
+    
+    hour = int(hour_str)
+    minute = int(minute_str)
+    second = int(second_str)
+
+    if not (0 <= hour <= 23 and 0 <= minute <= 59 and 0 <= second <= 59):
+        return None
+    
+    return (month, day, year, hour, minute, second)
+
+
+def print_parts(datetime_string):
+    values = validate_datetime(datetime_string)
+    if values is None:
+        print("Invalid datetime format")
+        return
+
+    month, day, year, hour, minute, second = values
+
+    print(f"{day:02d}/{month:02d}/{year}")
+    print(f"{hour:02d}:{minute:02d}:{second:02d}")
+    print(f"{month:02d}/{year}")
+    print("AM" if hour < 12 else "PM")
+
+
+input_text = input('Enter datetime "MM/DD/YYYY HH:MM:SS": ')
+print_parts(input_text)
+
+# Explanation:
+# - Validation checks separators, numeric format, valid ranges.
+# - Leap year logic correctly assigns Feb = 29 days if needed.
+# - After validation, values are unpacked and printed in 4 formats.
+# - AM if hour < 12 else PM.
+
+
+
+# ==============================================================
+# Q7. Recursion: factorial, sum of first N numbers, fibonacci series.
+# ==============================================================
+
+print("\n========== Q7: RECURSION SET ==========\n")
+
+def factorial(number):
+    if number == 0 or number == 1:
+        return 1
+    return number * factorial(number - 1)
+
+def sum_n(number):
+    if number == 0:
+        return 0
+    return number + sum_n(number - 1)
+
+def fibonacci(term):
+    if term <= 2:
+        return 1
+    return fibonacci(term - 1) + fibonacci(term - 2)
+
+
+number1 = int(input("Enter n for factorial: "))
+print("Factorial =", factorial(number1))
+
+number2 = int(input("Enter n for sum 1..n: "))
+print("Sum =", sum_n(number2))
+
+number3 = int(input("Enter number of Fibonacci terms: "))
+for index in range(1, number3 + 1):
+    print(fibonacci(index), end=" ")
+print()
+
+# Explanation:
+# - Each function calls itself until base case reached.
+# - factorial(n) = n × factorial(n-1)
+# - sum_n(n) = n + sum_n(n-1)
+# - fibonacci uses classic recursive definition
+# - Prints terms sequentially, starting at term 1
