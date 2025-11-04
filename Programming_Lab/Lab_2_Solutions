@@ -1,0 +1,350 @@
+# ===================================================
+# Q1. Print "Hi" if number divisible by 5, else "Bye"
+# ===================================================
+
+n = int(input("Enter an integer: "))
+
+if n % 5 == 0:
+    print("Hi")
+else:
+    print("Bye")
+
+# Explanation:
+# 1) n = int(input("Enter an integer: "))
+#    - Read a whole number from the user.
+# 2) if n % 5 == 0:
+#    - % gives remainder. If remainder is 0, the number is divisible by 5.
+# 3)     print("Hi")
+#    - If divisible by 5, print "Hi".
+# 4) else:
+#    - Otherwise, not divisible by 5.
+# 5)     print("Bye")
+#    - Print "Bye" when not divisible.
+
+
+# ==================================================================
+# Q2. Area of a trapezoid with parallel sides X, Y and height H (metres)
+#     Formula: Area = ( (X + Y) / 2 ) * H
+# ==================================================================
+
+X = float(input("Enter length of first parallel side X (metres): "))
+Y = float(input("Enter length of second parallel side Y (metres): "))
+H = float(input("Enter height H (metres): "))
+
+area_trap = ((X + Y) / 2) * H
+print("Area of the trapezoid is", area_trap, "square metres.")
+
+# Explanation:
+# 1) X = float(input(...)), Y = float(input(...)), H = float(input(...))
+#    - Read decimal values for the two parallel sides and the height.
+# 2) area_trap = ((X + Y) / 2) * H
+#    - Apply the trapezoid area formula: average of parallel sides times height.
+# 3) print("Area of the trapezoid is", area_trap, "square metres.")
+#    - Show the result with units.
+
+
+# ======================================================
+# Q3. BMI interpretation
+#     BMI = weight_kg / (height_m ** 2)
+#     Categories:
+#       < 18.5 : underweight
+#       18.5 to < 25 : normal weight
+#       25 to < 30 : slightly overweight
+#       30 to < 35 : obese
+#       >= 35 : clinically obese
+# ======================================================
+
+weight = float(input("Enter weight in kilograms: "))
+height = float(input("Enter height in metres: "))
+
+bmi = weight / (height * height)
+print("Your BMI is", bmi)
+
+if bmi < 18.5:
+    print("You are underweight.")
+elif bmi < 25:
+    print("You have a normal weight.")
+elif bmi < 30:
+    print("You are slightly overweight.")
+elif bmi < 35:
+    print("You are obese.")
+else:
+    print("You are clinically obese.")
+
+# Explanation:
+# 1) weight, height -> read as decimals.
+# 2) bmi = weight / (height * height)
+#    - BMI formula using metres and kilograms.
+# 3) print("Your BMI is", bmi)
+#    - Show the BMI value.
+# 4) The if/elif chain matches each interval in order:
+#    - Check from smallest range to largest.
+#    - Once a condition is true, its message is printed.
+
+
+# ================================================
+# Q4. Check whether an alphabet is vowel or consonant
+# ================================================
+
+ch = input("Enter a single alphabet: ")
+
+if ch.lower() in "aeiou":
+    print("Vowel")
+else:
+    print("Consonant")
+
+# Explanation:
+# 1) ch = input(...)
+#    - Read a character/string.
+# 2) ch.lower() in "aeiou"
+#    - Convert to lowercase and check if it is one of a, e, i, o, u.
+# 3) Print "Vowel" if it matches, otherwise "Consonant".
+
+
+# ====================================================================================
+# Q5. Percentage bacterial growth from 2.19×10^14 to 4.68×10^14 (round to nearest int)
+#     Growth% = ((final - initial) / initial) * 100
+# ====================================================================================
+
+initial = 2.19e14
+final = 4.68e14
+
+growth_percent = ((final - initial) / initial) * 100
+rounded_growth = round(growth_percent)
+
+print("Percentage growth is", rounded_growth, "percent.")
+
+# Explanation:
+# 1) Use scientific notation: 2.19e14 and 4.68e14.
+# 2) growth_percent = ((final - initial)/initial) * 100
+#    - Standard percentage change formula.
+# 3) round(growth_percent)
+#    - Round to the nearest whole number.
+# 4) Print the percentage growth.
+
+
+# ============================================================
+# Q6. Convert months to years and months (use // and % operators)
+# ============================================================
+
+months = int(input("Enter total number of months: "))
+
+years = months // 12
+remaining_months = months % 12
+
+print(months, "months is", years, "years and", remaining_months, "months.")
+
+# Explanation:
+# 1) months = int(input(...))
+#    - Read a whole number of months.
+# 2) years = months // 12
+#    - Integer division gives full years.
+# 3) remaining_months = months % 12
+#    - Modulus gives the leftover months.
+# 4) Print the converted time.
+
+
+# ============================================================================
+# Q7. Beacon light forecast (color: Blue/Red, mode: Steady/Flashing)
+#     Rhyme:
+#       Steady blue, clear view.
+#       Flashing blue, clouds due.
+#       Steady red, rain ahead.
+#       Flashing red, snow instead.
+# ============================================================================
+
+color = input("Enter color (Blue or Red): ")
+mode = input("Enter mode (Steady or Flashing): ")
+
+if color.lower() == "blue" and mode.lower() == "steady":
+    print("Forecast: clear view.")
+elif color.lower() == "blue" and mode.lower() == "flashing":
+    print("Forecast: clouds due.")
+elif color.lower() == "red" and mode.lower() == "steady":
+    print("Forecast: rain ahead.")
+elif color.lower() == "red" and mode.lower() == "flashing":
+    print("Forecast: snow instead.")
+else:
+    print("Forecast rules not matched.")
+
+# Explanation:
+# 1) Read color and mode as text.
+# 2) Lowercase them to compare easily.
+# 3) Use if/elif to match each rhyme line and print the forecast.
+
+
+# =============================================================================
+# Q8. Costs and revenue -> "Break even" if equal, else profit or loss amount
+# =============================================================================
+
+costs = float(input("Enter total costs: "))
+revenue = float(input("Enter total revenue: "))
+
+if revenue == costs:
+    print("Break even")
+elif revenue > costs:
+    profit = revenue - costs
+    print("Profit =", profit)
+else:
+    loss = costs - revenue
+    print("Loss =", loss)
+
+# Explanation:
+# 1) costs and revenue as decimals.
+# 2) If equal -> "Break even".
+# 3) If revenue higher -> profit is the difference.
+# 4) Else -> loss is the difference.
+
+
+# ====================================================================================
+# Q9. Widgets: 25 cents each, or 20 cents each for orders of 100 or more. Show total cost.
+# ====================================================================================
+
+qty = int(input("Enter number of widgets: "))
+
+if qty >= 100:
+    total_cost = qty * 0.20
+else:
+    total_cost = qty * 0.25
+
+print("Total cost is $", total_cost)
+
+# Explanation:
+# 1) Read quantity as integer.
+# 2) Apply the price rule depending on quantity.
+# 3) Multiply to get total and print with a dollar sign.
+
+
+# =====================================================================================
+# Q10. Apples cashier: $2.50 per pound. Input pounds and cash; display change or amount due.
+# =====================================================================================
+
+pounds = float(input("Enter pounds of apples: "))
+cash = float(input("Enter cash tendered in $: "))
+
+total = pounds * 2.50
+
+if cash >= total:
+    change = cash - total
+    print("Change to return is $", round(change, 2))
+else:
+    due = total - cash
+    print("You owe $", round(due, 2), "more.")
+
+# Explanation:
+# 1) total = pounds * 2.50
+#    - Cost depends on weight.
+# 2) If cash >= total -> change is cash - total.
+# 3) Else -> more money is needed: total - cash.
+# 4) round(..., 2) keeps two decimal places.
+
+
+# =====================================================
+# Q11. Largest of three numbers using nested if-else
+# =====================================================
+
+a = float(input("Enter first number: "))
+b = float(input("Enter second number: "))
+c = float(input("Enter third number: "))
+
+# Nested if-else to find the largest
+if a >= b:
+    if a >= c:
+        largest = a
+    else:
+        largest = c
+else:
+    if b >= c:
+        largest = b
+    else:
+        largest = c
+
+print("Largest number is", largest)
+
+# Explanation:
+# 1) Read three numbers.
+# 2) First compare a and b.
+# 3) Inside each branch, compare with c.
+# 4) The variable 'largest' stores the final maximum.
+
+
+# ==================================================================================
+# Q12. Gross salary from basic:
+#      HRA = 20% of basic, TA = 5% of basic, DA = 10% of basic
+#      Gross = Basic + HRA + TA + DA
+# ==================================================================================
+
+basic = float(input("Enter basic salary: "))
+
+hra = 0.20 * basic
+ta = 0.05 * basic
+da = 0.10 * basic
+
+gross = basic + hra + ta + da
+
+print("HRA =", hra, "| TA =", ta, "| DA =", da)
+print("Gross Salary =", gross)
+
+# Explanation:
+# 1) Calculate each allowance as a percentage of basic.
+# 2) Add them to the basic to get the gross salary.
+
+
+# ==================================================================================
+# Q13. Find the income tax slab for the employee (based on GROSS salary)
+#      Slabs (per lab sheet):
+#        < 3,00,000           : 0%
+#        3,00,000–10,00,000   : 10% of gross
+#        10,00,000–25,00,000  : 20% of gross
+#        > 25,00,000          : 30% of gross
+# ==================================================================================
+
+gross_salary = float(input("Enter gross salary to find tax slab: "))
+
+if gross_salary < 300000:
+    tax_rate = 0.0
+    slab = "0%"
+elif gross_salary <= 1000000:
+    tax_rate = 0.10
+    slab = "10%"
+elif gross_salary <= 2500000:
+    tax_rate = 0.20
+    slab = "20%"
+else:
+    tax_rate = 0.30
+    slab = "30%"
+
+tax_amount = gross_salary * tax_rate
+print("Tax slab:", slab, "| Tax amount =", tax_amount)
+
+# Explanation:
+# 1) Compare the gross salary to the slab boundaries.
+# 2) Set the tax rate and a label for the slab.
+# 3) tax_amount = gross_salary * tax_rate.
+# 4) Print the slab and the tax value.
+
+
+# ==================================================================================
+# Q14. Flowchart → State income tax
+#     Rules from flowchart:
+#       If income ≤ 20000: tax = 0.02 * income
+#       Else if income ≤ 50000: tax = 400 + 0.025 * (income − 20000)
+#       Else: tax = 1150 + 0.035 * (income − 50000)
+# ==================================================================================
+
+income = float(input("Enter taxable income: "))
+
+if income <= 20000:
+    tax = 0.02 * income
+elif income <= 50000:
+    tax = 400 + 0.025 * (income - 20000)
+else:
+    tax = 1150 + 0.035 * (income - 50000)
+
+print("Tax to be paid is", tax, "units.")
+
+# Explanation:
+# 1) Read taxable income as a decimal number.
+# 2) Use if/elif/else exactly as shown in the flowchart.
+# 3) For each range, compute tax with the given formula.
+# 4) Print a friendly full sentence with the tax amount.
