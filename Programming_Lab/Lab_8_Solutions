@@ -1,0 +1,402 @@
+# --------------------------------------------------------------
+# Q1. Reverse a string without using inbuilt reverse
+# --------------------------------------------------------------
+
+print("\n========== Q1: REVERSE STRING (MANUAL) ==========\n")
+
+original_text = input("Enter a string: ")
+reversed_text = ""
+index = len(original_text) - 1
+while index >= 0:
+    reversed_text += original_text[index]
+    index -= 1
+print("Reversed:", reversed_text)
+
+# Explanation:
+# - Walk from last index down to 0 and build reversed string.
+# - No slicing or built-in reverse used.
+
+
+# --------------------------------------------------------------
+# Q2. Length of the last word in a sentence
+# --------------------------------------------------------------
+
+print("\n========== Q2: LENGTH OF LAST WORD ==========\n")
+
+sentence = input("Enter a sentence: ").rstrip()
+length_last = 0
+index = len(sentence) - 1
+
+# skip trailing spaces
+while index >= 0 and sentence[index] == " ":
+    index -= 1
+# count word length
+while index >= 0 and sentence[index] != " ":
+    length_last += 1
+    index -= 1
+
+print("Length of last word =", length_last)
+
+# Explanation:
+# - Trim trailing spaces manually.
+# - Count characters backward until a space or start is found.
+
+
+# --------------------------------------------------------------
+# Q3. Search and count word occurrence
+#   (i) using inbuilt str functions
+#   (ii) without using inbuilt search/count
+# --------------------------------------------------------------
+
+print("\n========== Q3: WORD SEARCH + COUNT ==========\n")
+
+text_input = input("Enter a sentence: ")
+word_input = input("Enter a word to find: ")
+
+# (i) with inbuilt (case sensitive by default)
+contains_inbuilt = (word_input in text_input)
+count_inbuilt = text_input.count(word_input)
+print("Using inbuilt -> contains:", contains_inbuilt, "| count:", count_inbuilt)
+
+# (ii) without inbuilt search/count (naive scan)
+count_manual = 0
+pos = 0
+while pos <= len(text_input) - len(word_input):
+    match = True
+    j = 0
+    while j < len(word_input):
+        if text_input[pos + j] != word_input[j]:
+            match = False
+            break
+        j += 1
+    if match:
+        count_manual += 1
+    pos += 1
+print("Without inbuilt -> contains:", (count_manual > 0), "| count:", count_manual)
+
+# Explanation:
+# - Inbuilt: 'in' and .count().
+# - Manual: slide over text and compare characters for each position.
+
+
+# --------------------------------------------------------------
+# Q4. Pangram check (sentence contains every letter a–z at least once)
+# --------------------------------------------------------------
+
+print("\n========== Q4: PANGRAM CHECK ==========\n")
+
+pangram_sentence = input("Enter a sentence: ")
+seen = [False] * 26
+for ch in pangram_sentence.lower():
+    if 'a' <= ch <= 'z':
+        seen[ord(ch) - ord('a')] = True
+is_pangram = True
+for flag in seen:
+    if not flag:
+        is_pangram = False
+        break
+print("Is pangram?", is_pangram)
+
+# Explanation:
+# - Track each letter a–z in a boolean list.
+# - All 26 must be seen at least once.
+
+
+# --------------------------------------------------------------
+# Q5. Caesar Cipher (shift letters by key, preserve case, alphabets only)
+# --------------------------------------------------------------
+
+print("\n========== Q5: CAESAR CIPHER ==========\n")
+
+plain_text = input("Enter plaintext (letters only): ")
+shift_key = int(input("Enter shift (integer): "))
+
+cipher_text = ""
+for ch in plain_text:
+    if 'a' <= ch <= 'z':
+        offset = ord(ch) - ord('a')
+        cipher_text += chr(ord('a') + (offset + shift_key) % 26)
+    elif 'A' <= ch <= 'Z':
+        offset = ord(ch) - ord('A')
+        cipher_text += chr(ord('A') + (offset + shift_key) % 26)
+    else:
+        # Spec says alphabets only; if encountered, keep as-is
+        cipher_text += ch
+
+print("Cipher:", cipher_text)
+
+# Explanation:
+# - Rotate each letter within its case range using modulo 26.
+# - Non-letters are left unchanged.
+
+
+# --------------------------------------------------------------
+# Q6. Histogram for inputs in [1..10] until -1, display counts and percentages
+#     Bins: 1-2, 3-4, 5-6, 7-8, 9-10
+# --------------------------------------------------------------
+
+print("\n========== Q6: HISTOGRAM (1–10; stop at -1) ==========\n")
+
+counts = [0, 0, 0, 0, 0]  # bins: [1-2, 3-4, 5-6, 7-8, 9-10]
+total_entries = 0
+
+while True:
+    value_str = input("Enter number in 1..10 (-1 to stop): ")
+    if value_str == "-1":
+        break
+    value = int(value_str)
+    if 1 <= value <= 2:
+        counts[0] += 1; total_entries += 1
+    elif 3 <= value <= 4:
+        counts[1] += 1; total_entries += 1
+    elif 5 <= value <= 6:
+        counts[2] += 1; total_entries += 1
+    elif 7 <= value <= 8:
+        counts[3] += 1; total_entries += 1
+    elif 9 <= value <= 10:
+        counts[4] += 1; total_entries += 1
+    # else ignore out-of-range silently
+
+def bar(n):
+    if n <= 0:
+        return ""
+    s = ""
+    idx = 0
+    while idx < n:
+        s += "# "
+        idx += 1
+    return s.strip()
+
+def pct(n, total):
+    if total == 0:
+        return "0.00 %"
+    value = (n * 100.0) / total
+    return format(value, ".2f") + " %"
+
+print("1 - 2 :", bar(counts[0]), pct(counts[0], total_entries))
+print("3 - 4 :", bar(counts[1]), pct(counts[1], total_entries))
+print("5 - 6 :", bar(counts[2]), pct(counts[2], total_entries))
+print("7 - 8 :", bar(counts[3]), pct(counts[3], total_entries))
+print("9 - 10:", bar(counts[4]), pct(counts[4], total_entries))
+
+# Explanation:
+# - We place each input into one of five bins.
+# - Histogram uses '# ' bars plus percentage of total (2 decimals).
+# - Inputs outside 1..10 are ignored; -1 stops the loop.
+
+
+# --------------------------------------------------------------
+# Q7. Palindrome check for string without inbuilt (except len)
+# --------------------------------------------------------------
+
+print("\n========== Q7: PALINDROME (NO INBUILT EXCEPT len) ==========\n")
+
+pal_text = input("Enter a string: ")
+left = 0
+right = len(pal_text) - 1
+is_pal = True
+while left < right:
+    if pal_text[left] != pal_text[right]:
+        is_pal = False
+        break
+    left += 1
+    right -= 1
+print("Palindrome?", is_pal)
+
+# Explanation:
+# - Two-pointer check from both ends toward center.
+# - Stops early when a mismatch is found.
+
+
+# --------------------------------------------------------------
+# Q8. List of integers (arbitrary length). Do NOT use list functions other than len().
+#     i) sum   ii) product   iii) smallest element
+# --------------------------------------------------------------
+
+print("\n========== Q8: LIST SUM, PRODUCT, SMALLEST (NO INBUILT) ==========\n")
+
+length = int(input("Enter list length: "))
+numbers = []
+index = 0
+while index < length:
+    numbers.append(int(input("Enter number: ")))
+    index += 1
+
+# sum
+total_sum = 0
+index = 0
+while index < len(numbers):
+    total_sum += numbers[index]
+    index += 1
+
+# product
+total_product = 1
+index = 0
+while index < len(numbers):
+    total_product *= numbers[index]
+    index += 1
+
+# smallest
+if len(numbers) > 0:
+    smallest = numbers[0]
+    index = 1
+    while index < len(numbers):
+        if numbers[index] < smallest:
+            smallest = numbers[index]
+        index += 1
+else:
+    smallest = None
+
+print("Sum =", total_sum)
+print("Product =", total_product)
+print("Smallest =", smallest)
+
+# Explanation:
+# - Manual accumulation and comparisons; no sum(), min(), etc.
+# - Works for any list length provided by user.
+
+
+# --------------------------------------------------------------
+# Q9. Sort a list in descending order without using sort()
+# --------------------------------------------------------------
+
+print("\n========== Q9: SORT DESCENDING (NO INBUILT SORT) ==========\n")
+
+length_desc = int(input("Enter list length: "))
+arr = []
+p = 0
+while p < length_desc:
+    arr.append(int(input("Enter number: ")))
+    p += 1
+
+# selection sort descending
+i = 0
+while i < len(arr):
+    max_pos = i
+    j = i + 1
+    while j < len(arr):
+        if arr[j] > arr[max_pos]:
+            max_pos = j
+        j += 1
+    # swap
+    temp = arr[i]
+    arr[i] = arr[max_pos]
+    arr[max_pos] = temp
+    i += 1
+
+print("Sorted (desc):", arr)
+
+# Explanation:
+# - Classic selection sort, choosing maximum each pass.
+# - No built-in sort() used.
+
+
+# --------------------------------------------------------------
+# Q10. Hyphen-separated words → sort alphabetically → hyphen-separated
+#      Do not use inbuilt sorting.
+# --------------------------------------------------------------
+
+print("\n========== Q10: SORT HYPHEN-WORDS (NO INBUILT SORT) ==========\n")
+
+hyphen_input = input("Enter hyphen-separated words: ")
+# split manually into words list
+words = []
+temp = ""
+for ch in hyphen_input:
+    if ch == "-":
+        words.append(temp)
+        temp = ""
+    else:
+        temp += ch
+# add last
+words.append(temp)
+
+# bubble sort ascending (alphabetical)
+length_words = len(words)
+pass_index = 0
+while pass_index < length_words - 1:
+    swapped = False
+    pos = 0
+    while pos < length_words - 1 - pass_index:
+        if words[pos] > words[pos + 1]:
+            tmp = words[pos]
+            words[pos] = words[pos + 1]
+            words[pos + 1] = tmp
+            swapped = True
+        pos += 1
+    if not swapped:
+        break
+    pass_index += 1
+
+# join with hyphen manually
+result = ""
+idx = 0
+while idx < len(words):
+    result += words[idx]
+    if idx != len(words) - 1:
+        result += "-"
+    idx += 1
+
+print("Result:", result)
+
+# Explanation:
+# - Manual split and join using loops.
+# - Bubble-sort for alphabetical order without sort().
+
+
+# --------------------------------------------------------------
+# Q11. Paragraph: count digits, alphabets (upper/lower), special chars
+#     Use inbuilt string checks (isalpha, isdigit, isupper, islower)
+# --------------------------------------------------------------
+
+print("\n========== Q11: PARAGRAPH CHARACTER COUNTS ==========\n")
+
+paragraph = input("Enter a paragraph: ")
+
+digit_count = 0
+alpha_count = 0
+upper_count = 0
+lower_count = 0
+special_count = 0
+
+for ch in paragraph:
+    if ch.isdigit():
+        digit_count += 1
+    elif ch.isalpha():
+        alpha_count += 1
+        if ch.isupper():
+            upper_count += 1
+        elif ch.islower():
+            lower_count += 1
+    else:
+        special_count += 1
+
+print("Digits        :", digit_count)
+print("Alphabets     :", alpha_count)
+print("Uppercase     :", upper_count)
+print("Lowercase     :", lower_count)
+print("Special chars :", special_count)
+
+# Explanation:
+# - Use built-in character checks as permitted.
+# - We maintain separate counters and print them clearly.
+
+
+# --------------------------------------------------------------
+# Q12. Remove duplicate characters from a sentence
+# --------------------------------------------------------------
+
+print("\n========== Q12: REMOVE DUPLICATE CHARACTERS ==========\n")
+
+dup_text = input("Enter a sentence: ")
+seen_chars = {}
+unique = ""
+for ch in dup_text:
+    if ch not in seen_chars:
+        seen_chars[ch] = True
+        unique += ch
+print("Without duplicates:", unique)
+
+# Explanation:
+# - Use a dict to remember seen characters and build a unique-order string.
+# - Preserves first occurrences and order.
