@@ -5,6 +5,12 @@ This repository contains solutions to lab assignments, in-class practice problem
 
 ---
 
+### ⚠️ Disclaimer  
+This is **not an official JKLU repository**. It is a student-created resource.  
+All program files originally belong to the respective faculty members of **JK Lakshmipat University, Jaipur**, and each file is cited with the faculty name wherever applicable.
+
+---
+
 ## 📂 Contents
 - `lab_solutions/` – Programs submitted for lab assignments  
 - `class_practice/` – Solutions to questions given during lectures  
@@ -14,26 +20,26 @@ This repository contains solutions to lab assignments, in-class practice problem
 
 ## 🎯 Purpose
 This repository is intended as a reference for:
-- JKLU students revising Semester 1 programming
-- Beginners learning Python fundamentals
-- Anyone looking for simple, well-commented example programs
+- JKLU students revising Semester 1 programming  
+- Beginners learning Python fundamentals  
+- Anyone looking for simple, well-commented example programs  
 
 ---
 
 ## 🛠️ Tech Stack
-- **Language:** Python 3.x
-- **Tools Used:** VS Code / IDLE / Terminal
+- **Language:** Python 3.x  
+- **Tools Used:** VS Code / IDLE / Terminal  
 
 ---
 
 ## ✅ Topics Covered (Examples)
-- Variables, Input/Output
-- Conditional Statements
-- Loops (for / while)
-- Functions & Modular Code
-- Lists, Tuples, Dictionaries
-- File Handling
-- Basic Problem Solving
+- Variables, Input/Output  
+- Conditional Statements  
+- Loops (for / while)  
+- Functions & Modular Code  
+- Lists, Tuples, Dictionaries  
+- File Handling  
+- Basic Problem Solving  
 
 ---
 
