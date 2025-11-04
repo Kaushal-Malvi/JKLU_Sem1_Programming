@@ -3,7 +3,7 @@
 This folder contains short, easy-to-revise PDF slides for core Python data types.  
 Each file covers syntax, examples, common mistakes, and practice questions.
 
----
+----
 
 ## ✅ Included Topics
 
