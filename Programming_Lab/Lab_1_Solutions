@@ -1,0 +1,198 @@
+
+# ============================================
+# JKLU Programming Lab 1 - All Solutions in One File
+# Each question contains:
+#   1. Code (simple beginner-friendly)
+#   2. Line-by-line explanation (as comments)
+# ============================================
+
+
+# =====================================================
+# QUESTION 1: Input length & width in metres, find area
+# =====================================================
+
+length = float(input("Enter length in metres: "))
+width = float(input("Enter width in metres: "))
+
+if length > 0 and width > 0:
+    area = length * width
+    print("Area =", area, "square metres")
+else:
+    print("Invalid input! Length and width must be positive.")
+
+# Explanation:
+# 1) Take length and width as decimal numbers
+# 2) Check if both are positive
+# 3) If valid, multiply length × width to get area
+# 4) Otherwise show error message
+
+
+
+# ===============================================================
+# QUESTION 2: Same as Q1, but input in feet → output in sq. metres
+# ===============================================================
+
+length_ft = float(input("Enter length in feet: "))
+width_ft = float(input("Enter width in feet: "))
+
+if length_ft > 0 and width_ft > 0:
+    area_sqft = length_ft * width_ft
+    area_sqm = area_sqft * 0.092903
+    print("Area =", area_sqm, "square metres")
+else:
+    print("Invalid input! Length and width must be positive.")
+
+# Explanation:
+# 1) Read length and width in FEET
+# 2) Calculate area in square feet first
+# 3) Convert to square metres using 1 sqft = 0.092903 sqm
+
+
+
+# ==========================================================
+# QUESTION 3: Check if y is divisible by x (no negatives allowed)
+# ==========================================================
+
+x = int(input("Enter integer x (divisor): "))
+y = int(input("Enter integer y (dividend): "))
+
+if x <= 0 or y < 0:
+    print("Invalid input")
+else:
+    if y % x == 0:
+        print(y, "is divisible by", x)
+    else:
+        print(y, "is not divisible by", x)
+
+# Explanation:
+# 1) x and y are integers
+# 2) If x <= 0 or y < 0 → invalid (rule from lab)
+# 3) Otherwise check remainder using %
+# 4) If remainder is 0 → divisible
+
+
+
+# ==========================================
+# QUESTION 4: Check whether number is even or odd
+# ==========================================
+
+n = int(input("Enter an integer: "))
+
+if n % 2 == 0:
+    print(n, "is an even number.")
+else:
+    print(n, "is an odd number.")
+
+# Explanation:
+# 1) % (modulus) gives remainder
+# 2) If divisible by 2 → even else odd
+
+
+
+# ====================================================
+# QUESTION 5: Area of circle with radius between 1–100
+# ====================================================
+
+r = float(input("Enter radius (1 to 100): "))
+
+if r >= 1 and r <= 100:
+    area = 3.14159 * r * r
+    print("Area of circle =", area)
+else:
+    print("Invalid input! Radius must be between 1 and 100.")
+
+# Explanation:
+# 1) Read radius
+# 2) Check if radius inside allowed range
+# 3) Use area formula πr², π ≈ 3.14159
+
+
+
+# ==================================================
+# QUESTION 6: Celsius → Fahrenheit and Kelvin
+# ==================================================
+
+celsius = float(input("Enter temperature in Celsius: "))
+
+fahrenheit = (celsius * 9/5) + 32
+kelvin = celsius + 273.15
+
+print("Fahrenheit:", fahrenheit)
+print("Kelvin:", kelvin)
+
+# Explanation:
+# °F = (°C × 9/5) + 32
+# K = °C + 273.15
+
+
+
+# ==================================================
+# QUESTION 7: Find temperature where C = F
+# ==================================================
+
+print("Celsius and Fahrenheit are equal at -40 degrees.")
+
+# Explanation:
+# Solve C = (C - 32) × 5/9 → C = -40
+
+
+
+# ==================================================
+# QUESTION 8: Leap year checker
+# ==================================================
+
+year = int(input("Enter a positive year: "))
+
+if year > 0:
+    if (year % 400 == 0) or (year % 4 == 0 and year % 100 != 0):
+        print(year, "is a leap year.")
+    else:
+        print(year, "is not a leap year.")
+else:
+    print("Invalid input! Year must be a positive integer.")
+
+# Rule:
+# Divisible by 400 → leap
+# Else divisible by 4 and not 100 → leap
+
+
+
+# ======================================================
+# QUESTION 9: RD maturity amount @ 7.1% p.a.
+# ======================================================
+
+installment = float(input("Enter monthly installment (minimum Rs. 500): "))
+months = int(input("Enter duration in months (minimum 6): "))
+
+if installment >= 500 and months >= 6:
+    rate = 7.1 / 100
+    total_interest = installment * (rate / 12) * (months * (months + 1) / 2)
+    maturity = installment * months + total_interest
+    print("Maturity amount =", maturity)
+else:
+    print("Invalid input! Minimum installment = 500, duration = 6 months")
+
+# Explanation:
+# Simple interest per deposit, no compounding
+
+
+
+# ======================================================
+# QUESTION 10: Convert seconds to hh:mm:ss (1–86400)
+# ======================================================
+
+total_seconds = int(input("Enter total seconds (1 to 86400): "))
+
+if total_seconds >= 1 and total_seconds <= 86400:
+    hours = total_seconds // 3600
+    remaining = total_seconds % 3600
+    minutes = remaining // 60
+    seconds = remaining % 60
+    print(hours, "hours,", minutes, "minutes, and", seconds, "seconds")
+else:
+    print("Invalid input! Seconds must be between 1 and 86400.")
+
+# Explanation:
+# 1h = 3600s, 1m = 60s
+# Use // for whole units, % for remainder
+
