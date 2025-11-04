@@ -1,0 +1,223 @@
+# ==============================================================
+# Q1. Print all numbers between X and Y that are divisible by N.
+# ==============================================================
+
+print("\n========== Q1: DIVISIBLE NUMBERS BETWEEN X AND Y ==========\n")
+
+X = int(input("Enter value of X: "))
+Y = int(input("Enter value of Y: "))
+N = int(input("Enter value of N: "))
+
+for i in range(X + 1, Y + 1):     # Loop from the number just after X up to Y
+    if i % N == 0:               # Check if number is divisible by N
+        print(i)
+
+# Explanation:
+# 1) User enters X, Y, N.
+# 2) We loop from X+1 because the question says "between X and Y" (not including X).
+# 3) i % N == 0 means i is divisible by N.
+# 4) We print only those numbers that satisfy the condition.
+
+
+
+# ==============================================================
+# Q2. Take an integer (any number of digits) and find sum of digits.
+# ==============================================================
+
+print("\n========== Q2: SUM OF DIGITS (ANY LENGTH INTEGER) ==========\n")
+
+num = input("Enter a positive integer: ")   # use string so no limit on digits
+sum_digits = 0
+
+for ch in num:          # Loop through each character in the string
+    sum_digits += int(ch)
+
+print("Sum of digits =", sum_digits)
+
+# Explanation:
+# 1) We take input as a string so that number length does not matter.
+# 2) We loop through each character (digit).
+# 3) Convert character to integer → add to sum.
+# 4) Works even for 50-digit numbers, unlike int-math method.
+
+
+
+# ==============================================================
+# Q3. Take numbers continuously and count how many are divisible
+#     by N and how many are not. Stop when user enters -999.
+# ==============================================================
+
+print("\n========== Q3: COUNT DIVISIBLE / NOT DIVISIBLE (STOP AT -999) ==========\n")
+
+N = int(input("Enter value of N: "))
+count_div = 0
+count_not = 0
+
+while True:
+    value = int(input("Enter number (-999 to stop): "))
+    if value == -999:           # sentinel value stops loop
+        break
+    if value % N == 0:
+        count_div += 1
+    else:
+        count_not += 1
+
+print("Numbers divisible by", N, "=", count_div)
+print("Numbers NOT divisible by", N, "=", count_not)
+
+# Explanation:
+# 1) Infinite loop using while True.
+# 2) We break only when user enters -999.
+# 3) Every number other than -999 is checked with % operator.
+# 4) Counters store how many satisfy / do not satisfy divisibility.
+
+
+
+# ==============================================================
+# Q4. Find factorial of a number using while loop.
+# ==============================================================
+
+print("\n========== Q4: FACTORIAL USING WHILE LOOP ==========\n")
+
+n = int(input("Enter a positive integer: "))
+
+if n < 0:
+    print("Invalid input! Factorial is not defined for negative numbers.")
+else:
+    fact = 1
+    i = 1
+    while i <= n:
+        fact *= i
+        i += 1
+    print("Factorial =", fact)
+
+# Explanation:
+# 1) Factorial = 1 × 2 × 3 × … × n → repeated multiplication.
+# 2) We use while loop from 1 to n.
+# 3) fact starts at 1 (multiplicative identity).
+# 4) If negative input, we show message instead of running loop.
+
+
+
+# ==============================================================
+# Q5. Check whether a given number is a palindrome (any length),
+#     without using slicing or reversed().
+# ==============================================================
+
+print("\n========== Q5: PALINDROME CHECK (MANUAL REVERSE) ==========\n")
+
+s = input("Enter a number: ")   # keep as string
+rev = ""
+
+i = len(s) - 1
+while i >= 0:            # build reversed string
+    rev += s[i]
+    i -= 1
+
+if s == rev:
+    print("Palindrome")
+else:
+    print("Not Palindrome")
+
+# Explanation:
+# 1) A number is palindrome if it reads same forward and backward.
+# 2) We reverse manually using while loop (no shortcuts allowed).
+# 3) Compare original string and reversed string.
+# 4) Works for any length: 3-digit, 10-digit, 50-digit, etc.
+
+
+
+# ==============================================================
+# Q6. Print first N terms of Fibonacci series (starting from 1, 1).
+# ==============================================================
+
+print("\n========== Q6: FIRST N FIBONACCI TERMS ==========\n")
+
+N = int(input("Enter number of terms: "))
+
+a = 1       # first term
+b = 1       # second term
+
+for i in range(N):
+    print(a)        # print current term
+    a, b = b, a + b # move to next term
+
+# Explanation:
+# 1) Fibonacci: 1, 1, 2, 3, 5, 8, ...
+# 2) a = current term, b = next term
+# 3) After printing a, update: new a = old b, new b = old a + old b
+# 4) Loop runs N times.
+
+
+
+# ==============================================================
+# Q7. Check if a number is prime using efficient method
+#     (only check divisors up to sqrt(n)).
+# ==============================================================
+
+print("\n========== Q7: EFFICIENT PRIME CHECK ==========\n")
+
+n = int(input("Enter an integer: "))
+
+if n <= 1:
+    print("Not Prime")      # 0,1, negative → not prime
+elif n <= 3:
+    print("Prime")          # 2 and 3 are prime
+elif n % 2 == 0 or n % 3 == 0:
+    print("Not Prime")      # divisible by 2 or 3
+else:
+    i = 5
+    prime = True
+    while i * i <= n:
+        if n % i == 0 or n % (i + 2) == 0:
+            prime = False
+            break
+        i += 6
+    print("Prime" if prime else "Not Prime")
+
+# Explanation:
+# 1) No need to test all numbers up to n, only up to √n.
+# 2) We skip even numbers and multiples of 3 to reduce checks.
+# 3) 6k ± 1 rule → all primes > 3 are of form 6k-1 or 6k+1.
+# 4) Much faster than checking from 2 to n-1.
+
+
+
+# ==============================================================
+# Q8. Count UPPERCASE letters, lowercase letters, digits,
+#     and special characters in a sentence (without using .isalpha etc.)
+# ==============================================================
+
+print("\n========== Q8: CHARACTER COUNT (ASCII CHECK) ==========\n")
+
+text = input("Enter text: ")
+
+caps = smalls = digits = special = 0
+i = 0
+
+while i < len(text):
+    ch = text[i]
+    code = ord(ch)      # get ASCII number
+
+    if 48 <= code <= 57:
+        digits += 1
+    elif 65 <= code <= 90:
+        caps += 1
+    elif 97 <= code <= 122:
+        smalls += 1
+    else:
+        special += 1
+    
+    i += 1
+
+print("Capital letters :", caps)
+print("Small letters   :", smalls)
+print("Digits          :", digits)
+print("Special chars   :", special)
+
+# Explanation:
+# 1) ord() converts character to ASCII number.
+# 2) '0'–'9' → 48–57
+# 3) 'A'–'Z' → 65–90
+# 4) 'a'–'z' → 97–122
+# 5) Anything else → special character.
