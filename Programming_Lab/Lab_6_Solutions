@@ -1,0 +1,238 @@
+# ==============================================================
+# Q1. Print multiplication table 1×1 to 10×10 in grid format.
+# ==============================================================
+
+print("\n========== Q1: 10x10 MULTIPLICATION TABLE ==========\n")
+
+for i in range(1, 11):
+    row = ""                     # build one row as a string
+    for j in range(1, 11):
+        row += f"{i*j:4d}"       # fixed width to keep columns aligned
+    print(row)
+
+# Explanation:
+# - Outer loop controls row number (1 to 10).
+# - Inner loop prints products for each column.
+# - f"{i*j:4d}" prints numbers right-aligned in 4 spaces.
+# - We store one row in a string, then print once for clean formatting.
+
+
+
+# ==============================================================
+# Q2. Print numbers 1–1000 that are NOT divisible by N.
+#     Use while loop and continue statement.
+# ==============================================================
+
+print("\n========== Q2: NUMBERS NOT DIVISIBLE BY N (1–1000) ==========\n")
+
+N = int(input("Enter value of N: "))
+i = 1
+
+while i <= 1000:
+    if i % N == 0:      # divisible → skip
+        i += 1
+        continue
+    print(i)
+    i += 1
+
+# Explanation:
+# - Loop goes 1 to 1000 inclusive.
+# - If number is divisible by N → continue skips printing.
+# - If not divisible → printed normally.
+# - continue allows us to skip only that iteration without breaking loop.
+
+
+
+# ==============================================================
+# Q3(a). Print left-aligned star triangle using while loop.
+# ==============================================================
+
+print("\n========== Q3(a): LEFT-ALIGNED TRIANGLE ==========\n")
+
+N = int(input("Enter number of rows: "))
+i = 1
+
+while i <= N:
+    print("* " * i)
+    i += 1
+
+# Explanation:
+# - Each row prints i stars.
+# - "* " * i repeats the pattern i times.
+# - Spaces after * make the shape readable.
+
+
+
+# ==============================================================
+# Q3(b). Print right-aligned triangle using while loop.
+# ==============================================================
+
+print("\n========== Q3(b): RIGHT-ALIGNED TRIANGLE ==========\n")
+
+N = int(input("Enter number of rows: "))
+i = 1
+
+while i <= N:
+    spaces = "  " * (N - i)   # leading spaces
+    stars  = "* " * i
+    print(spaces + stars)
+    i += 1
+
+# Explanation:
+# - To right-align, we print spaces before stars.
+# - (N-i) decides how many spaces needed each row.
+# - Star count increases each row, space count decreases.
+
+
+
+# ==============================================================
+# Q3(c). Print pyramid pattern with odd stars per row.
+# ==============================================================
+
+print("\n========== Q3(c): PYRAMID PATTERN ==========\n")
+
+N = int(input("Enter number of rows: "))
+i = 1
+
+while i <= N:
+    spaces = " " * (2 * (N - i))     # padding before stars
+    stars  = "*" * (2*i - 1)         # 1,3,5,7,...
+    print(spaces + stars)
+    i += 1
+
+# Explanation:
+# - Pyramid grows in odd numbers: 1,3,5,... → (2*i - 1)
+# - Leading spaces keep the pyramid centered.
+# - Width expands symmetrically as i increases.
+
+
+
+# ==============================================================
+# Q4. Convert decimal integer to binary WITHOUT using bin().
+# ==============================================================
+
+print("\n========== Q4: DECIMAL → BINARY (MANUAL) ==========\n")
+
+n = int(input("Enter a positive integer: "))
+
+if n == 0:
+    print("0")
+else:
+    binary = ""
+    x = n
+    while x > 0:
+        binary = str(x % 2) + binary    # collect last bit at front
+        x //= 2                         # integer division by 2
+    print("Binary =", binary)
+
+# Explanation:
+# - Binary is built by repeatedly taking remainder when ÷2.
+# - We prepend each bit because remainder gives least-significant bit first.
+# - Stop when x becomes 0.
+# - Works for any positive integer.
+
+
+
+# ==============================================================
+# Q5. Compute LCM of N numbers using loop + gcd helper.
+# ==============================================================
+
+print("\n========== Q5: LCM OF N NUMBERS ==========\n")
+
+def gcd(a, b):
+    while b != 0:
+        a, b = b, a % b
+    return a
+
+def lcm(a, b):
+    return a // gcd(a, b) * b
+
+count = int(input("How many numbers? "))
+nums = []
+
+for _ in range(count):
+    nums.append(int(input("Enter number: ")))
+
+result = nums[0]
+for v in nums[1:]:
+    result = lcm(result, v)
+
+print("LCM =", result)
+
+# Explanation:
+# - LCM(a, b) = (a * b) / gcd(a, b).
+# - We apply LCM pairwise across the list.
+# - gcd uses Euclidean algorithm (fast and standard).
+# - Works for any count >= 2.
+
+
+
+# ==============================================================
+# Q6. Compute GCD of N numbers (similar logic but only gcd).
+# ==============================================================
+
+print("\n========== Q6: GCD OF N NUMBERS ==========\n")
+
+def gcd2(a, b):
+    while b != 0:
+        a, b = b, a % b
+    return a
+
+count = int(input("How many numbers? "))
+nums = []
+
+for _ in range(count):
+    nums.append(int(input("Enter number: ")))
+
+result = nums[0]
+for v in nums[1:]:
+    result = gcd2(result, v)
+
+print("GCD =", result)
+
+# Explanation:
+# - GCD is repeatedly applied over the list.
+# - Euclidean algorithm reduces time drastically.
+# - Unlike LCM, no multiplication involved, just gcd chaining.
+
+
+
+# ==============================================================
+# Q7. Print sin and cos values from 0° to 360° in steps of 10°.
+#     Round to 4 decimal places.
+# ==============================================================
+
+print("\n========== Q7: SIN & COS TABLE (0–360°) ==========\n")
+
+import math
+
+print("Deg   Sin        Cos")
+for deg in range(0, 361, 10):
+    s = round(math.sin(math.radians(deg)), 4)
+    c = round(math.cos(math.radians(deg)), 4)
+    print(f"{deg:3d}  {s:8.4f}  {c:8.4f}")
+
+# Explanation:
+# - math.radians() converts degrees → radians.
+# - round(x,4) ensures 4-decimal output.
+# - f-strings format each column neatly.
+
+
+
+# ==============================================================
+# Q8. Print a nested star pattern (triangle style).
+# ==============================================================
+
+print("\n========== Q8: NESTED STAR PATTERN ==========\n")
+
+N = int(input("Enter number of rows: "))
+
+for i in range(1, N + 1):
+    spaces = "  " * (N - i)
+    row = ("*   " * i).rstrip()
+    print(spaces + row)
+
+# Explanation:
+# - Similar to pyramid, but spacing widened for visual effect.
+# - ("*   " * i) prints i stars separated by spaces.
+# - Leading spaces move shape to center visually.
