@@ -24,17 +24,21 @@ Each file covers syntax, examples, common mistakes, and practice questions.
 
 ----
 
-### Recommended Study Order
-1. Algorithms & Flowcharts  
-2. Operators & Expressions  
-3. Loops  
-4. Functions  
-5. Files I/O  
-6. Modules & Packages  
-7. Strings  
-8. Lists  
-9. Tuples  
-10. Sets & Dictionaries  
+### 📌 Recommended Study Order
+
+| #  | Topic |
+|----|--------|
+| 1  | Algorithms & Flowcharts |
+| 2  | Operators & Expressions |
+| 3  | Loops |
+| 4  | Functions |
+| 5  | Files I/O |
+| 6  | Modules & Packages |
+| 7  | Strings |
+| 8  | Lists |
+| 9  | Tuples |
+| 10 | Sets & Dictionaries |
+
 
 
 ## 🔎 What’s inside each slide?
