@@ -1,0 +1,284 @@
+# ==============================================================
+# Q1. A company gives a bonus of 5% to employees if their years
+#     of service is more than 5 years. Ask salary & years,
+#     then display net bonus amount.
+# ==============================================================
+
+print("\n========== Q1: BONUS BASED ON YEARS OF SERVICE ==========\n")
+
+salary = float(input("Enter salary (in INR): "))
+years  = float(input("Enter years of service: "))
+
+if years > 5:
+    bonus = 0.05 * salary
+else:
+    bonus = 0
+
+print("Net bonus amount =", round(bonus, 2), "INR")
+
+# Explanation:
+# 1) We take two inputs: salary (float) and years of service (float or int).
+# 2) Condition: bonus applies ONLY if years > 5, not >= 5.
+# 3) Bonus = 5% of salary → 0.05 * salary.
+# 4) If condition fails, bonus = 0.
+# 5) round(bonus,2) ensures money is printed with 2 decimal places.
+
+
+
+
+# ==============================================================
+# Q2. Ask the user for a password. If it matches the stored one,
+#     print "Welcome", else "Wrong Password!".
+# ==============================================================
+
+print("\n========== Q2: PASSWORD VALIDATION ==========\n")
+
+password = input("Enter password: ")
+
+if password == "s3cr3t!P@ssw0rd":
+    print("Welcome")
+else:
+    print("Wrong Password!")
+
+# Explanation:
+# 1) We use a direct string comparison (==).
+# 2) No trimming or case adjustment — password must match exactly.
+# 3) If match → Welcome, else → Wrong Password!
+
+
+
+
+# ==============================================================
+# Q3. Ask the user for a shape (square, rectangle, circle, triangle),
+#     take required dimensions, compute area, print result rounded
+#     to 3 decimals.
+# ==============================================================
+
+print("\n========== Q3: AREA BASED ON SHAPE ==========\n")
+
+shape = input("Enter shape (square/rectangle/circle/triangle): ").lower()
+area = None     # We'll store result here only if a valid shape
+
+if shape == "square":
+    side = float(input("Enter side length: "))
+    area = side * side
+
+elif shape == "rectangle":
+    length = float(input("Enter length: "))
+    width  = float(input("Enter width: "))
+    area = length * width
+
+elif shape == "circle":
+    radius = float(input("Enter radius: "))
+    area = 3.14159 * radius * radius     # πr²
+
+elif shape == "triangle":
+    base   = float(input("Enter base: "))
+    height = float(input("Enter height: "))
+    area = 0.5 * base * height           # ½bh
+
+if area is None:
+    print("Invalid shape entered.")
+else:
+    print("Area =", format(area, ".3f"))
+
+# Explanation:
+# 1) User chooses a shape, we convert it to lowercase for easy matching.
+# 2) Each block asks only the inputs needed for that shape.
+# 3) area is initially None so we can detect invalid shapes later.
+# 4) format(area, ".3f") prints result up to 3 decimal places.
+
+
+
+
+# ==============================================================
+# Q4. Input time in hours + minutes (24-hour clock).
+#     Add 15 minutes and print the new time.
+# ==============================================================
+
+print("\n========== Q4: ADD 15 MINUTES TO TIME ==========\n")
+
+hours = int(input("Enter hours (0-23): "))
+minutes = int(input("Enter minutes (0-59): "))
+
+total_minutes = hours * 60 + minutes + 15
+new_hours = (total_minutes // 60) % 24      # wrap around at 24
+new_minutes = total_minutes % 60
+
+print(f"New time = {new_hours}:{new_minutes:02d}")
+
+# Explanation:
+# 1) Convert hour+minute into total minutes.
+# 2) Add 15.
+# 3) new hours = total_minutes // 60, but wrap via %24 if past 23.
+# 4) new minutes = total_minutes % 60
+# 5) {new_minutes:02d} forces 2-digit display like 07 instead of 7.
+
+
+
+
+# ==============================================================
+# Q5. Based on given distance & time of day,
+#     choose cheapest transport option: Taxi / Bus / Train.
+#
+# Taxi: Base fare = 33.58 + rate*km (37.89/day, 43.17/night)
+# Bus:  4.32 * km (only if km >= 20)
+# Train: 2.88 * km (only if km >= 100)
+# ==============================================================
+
+print("\n========== Q5: CHEAPEST TRANSPORT OPTION ==========\n")
+
+distance = float(input("Enter distance in km: "))
+period   = input("Enter period (day/night): ").lower()
+
+# Taxi price always available
+taxi = 33.58 + (37.89 if period == "day" else 43.17) * distance
+
+# Bus only if 20+ km, else block it by making price = +infinity
+bus = 4.32 * distance if distance >= 20 else float('inf')
+
+# Train only if 100+ km
+train = 2.88 * distance if distance >= 100 else float('inf')
+
+cheapest = min(taxi, bus, train)
+
+print("Cheapest fare =", round(cheapest, 2), "INR")
+
+# Explanation:
+# 1) Taxi available for all distances.
+# 2) For bus/train, if distance rule fails, set price = infinity
+#    so it never becomes the minimum.
+# 3) min() compares all 3 and picks smallest.
+# 4) round(...,2) → money formatting.
+
+
+
+
+# ==============================================================
+# Q6. Tom the cat plays 63 min on working days and 127 min on
+#     holidays. Total minutes in a year available: 30,000.
+#     If he plays more than that, he runs away.
+# ==============================================================
+
+print("\n========== Q6: TOM CAT PLAYTIME ==========\n")
+
+holidays = int(input("Enter number of holidays in a year: "))
+workdays = 365 - holidays
+
+play_minutes = workdays * 63 + holidays * 127
+difference = abs(30000 - play_minutes)
+
+hours = difference // 60
+mins  = difference % 60
+
+if play_minutes > 30000:
+    print("Tom will run away")
+    print(hours, "hours and", mins, "minutes more for play")
+else:
+    print("Tom sleeps well")
+    print(hours, "hours and", mins, "minutes less for play")
+
+# Explanation:
+# 1) Workdays = 365 - holidays.
+# 2) Multiply by each day's play rate, sum.
+# 3) If over limit → too much play → runs away.
+# 4) abs(...) ensures positive difference for printing.
+
+
+
+
+# ==============================================================
+# Q7. Based on budget & season, decide vacation location.
+#
+#   <=100 BGN     → Bulgaria (30% summer / 70% winter)
+#   <=1000 BGN    → Balkans  (40% summer / 80% winter)
+#   >1000 BGN     → Europe   (90% both seasons)
+# ==============================================================
+
+print("\n========== Q7: VACATION BUDGET DECISION ==========\n")
+
+budget = float(input("Enter budget (BGN): "))
+season = input("Enter season (summer/winter): ").lower()
+
+if budget <= 100:
+    destination = "Bulgaria"
+    percent = 0.30 if season == "summer" else 0.70
+    place = "Camp"  if season == "summer" else "Hotel"
+
+elif budget <= 1000:
+    destination = "Balkans"
+    percent = 0.40 if season == "summer" else 0.80
+    place = "Camp"  if season == "summer" else "Hotel"
+
+else:
+    destination = "Europe"
+    percent = 0.90
+    place = "Hotel"
+
+spent = percent * budget
+
+print("Somewhere in", destination)
+print(place, "-", format(spent, ".2f"))
+
+# Explanation:
+# 1) Rules given in problem decide the destination + place + % spent.
+# 2) Europe always uses hotel, never camp.
+# 3) format(...,".2f") prints 2 decimals like 123.45
+
+
+
+
+# ==============================================================
+# Q8. Print all numbers from 1 to 1000 that END in digit 6.
+# ==============================================================
+
+print("\n========== Q8: NUMBERS ENDING IN 6 ==========\n")
+
+for i in range(1, 1001):
+    if i % 10 == 6:
+        print(i)
+
+# Explanation:
+# 1) Last digit of a number = number % 10.
+# 2) If equal to 6 → print it.
+
+
+
+
+# ==============================================================
+# Q9. Read n integers and print their sum.
+# ==============================================================
+
+print("\n========== Q9: SUM OF N INTEGERS ==========\n")
+
+n = int(input("How many integers? "))
+total = 0
+
+for _ in range(n):
+    x = int(input())
+    total += x
+
+print("Sum =", total)
+
+# Explanation:
+# 1) total starts at 0, each input added using +=.
+# 2) _ is used when loop variable is not needed.
+
+
+
+
+# ==============================================================
+# Q10. Input a number N and print its multiplication table
+#      from 1 to 20.
+# ==============================================================
+
+print("\n========== Q10: MULTIPLICATION TABLE (1 TO 20) ==========\n")
+
+N = int(input("Enter N: "))
+
+for i in range(1, 21):
+    print(f"{N} x {i} = {N * i}")
+
+# Explanation:
+# 1) Loop runs 1–20 inclusive.
+# 2) f-string prints formatted table row like "5 x 3 = 15".
