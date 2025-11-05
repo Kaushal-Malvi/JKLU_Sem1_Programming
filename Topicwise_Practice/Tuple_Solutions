@@ -1,0 +1,557 @@
+# =====================================================
+# QUESTION 1: Create a tuple
+# =====================================================
+
+raw = input("Enter elements separated by commas: ")
+parts = raw.split(",")
+t1 = tuple(x.strip() for x in parts if x.strip() != "")
+print(t1)
+
+# Explanation:
+# 1) Read a comma-separated string.
+# 2) Split by comma, strip spaces, ignore blanks.
+# 3) Put cleaned values into a tuple.
+# 4) Print the tuple.
+
+
+
+# =====================================================
+# QUESTION 2: Create a tuple with different data types
+# =====================================================
+
+t1 = (42, "hello", 3.14, True, None)
+print(t1)
+
+# Explanation:
+# 1) Tuples can store mixed types (int, str, float, bool, None).
+# 2) We define one tuple and print it.
+
+
+
+# =====================================================
+# QUESTION 3: Create a tuple with numbers and print one item
+# =====================================================
+
+raw = input("Enter numbers separated by commas: ")
+parts = raw.split(",")
+nums = tuple(int(p.strip()) for p in parts if p.strip() != "")
+idx = int(input("Enter index to print (0-based): ").strip())
+if 0 <= idx < len(nums):
+    print(nums[idx])
+else:
+    print("Invalid index")
+
+# Explanation:
+# 1) Read integers into a tuple.
+# 2) Ask for an index.
+# 3) If valid, print that item; otherwise show an error.
+
+
+
+# =====================================================
+# QUESTION 4: Unpack a tuple into several variables
+# =====================================================
+
+raw = input("Enter exactly three values separated by commas: ")
+parts = [p.strip() for p in raw.split(",") if p.strip() != ""]
+if len(parts) == 3:
+    a, b, c = tuple(parts)
+    print(a, b, c)
+else:
+    print("Please enter exactly three values.")
+
+# Explanation:
+# 1) Read three values.
+# 2) Unpack them into a, b, c in one line.
+# 3) Print the variables.
+
+
+
+# =====================================================
+# QUESTION 5: Add an item in a tuple
+# =====================================================
+
+raw = input("Enter base tuple elements (comma-separated): ")
+base = tuple(p.strip() for p in raw.split(",") if p.strip() != "")
+new_item = input("Enter one item to add: ").strip()
+t2 = base + (new_item,)
+print(t2)
+
+# Explanation:
+# 1) Tuples are immutable, so you cannot modify them in place.
+# 2) Create a new tuple by concatenating the existing tuple with a one-item tuple.
+# 3) Print the new tuple.
+
+
+
+# =====================================================
+# QUESTION 6: Convert a tuple to a string
+# =====================================================
+
+raw = input("Enter tuple elements (comma-separated): ")
+t1 = tuple(p.strip() for p in raw.split(",") if p.strip() != "")
+s = "".join(str(x) for x in t1)
+print(s)
+
+# Explanation:
+# 1) Read values into a tuple.
+# 2) Convert each item to a string and join with no separator.
+# 3) Print the string.
+
+
+
+# =====================================================
+# QUESTION 7: Get the 4th element and 4th from last of a tuple
+# =====================================================
+
+raw = input("Enter elements (comma-separated): ")
+t1 = tuple(p.strip() for p in raw.split(",") if p.strip() != "")
+if len(t1) >= 4:
+    print(t1[3], t1[-4])
+else:
+    print("Tuple must have at least 4 elements")
+
+# Explanation:
+# 1) Build a tuple.
+# 2) Index [3] is the 4th element; [-4] is the 4th from the end.
+# 3) Check length to avoid IndexError.
+
+
+
+# =====================================================
+# QUESTION 8: (a) Count occurrences of each element  (b) Count a specific element
+# =====================================================
+
+raw = input("Enter elements (comma-separated): ")
+t1 = tuple(p.strip() for p in raw.split(",") if p.strip() != "")
+
+# (a) Count all
+counts = {}
+for x in t1:
+    counts[x] = counts.get(x, 0) + 1
+print(counts)
+
+# (b) Specific
+key = input("Enter an element to count: ").strip()
+print(t1.count(key))
+
+# Explanation:
+# 1) Build a tuple from input.
+# 2) For (a), count all items using a dictionary.
+# 3) For (b), use tuple.count(value) to count one target.
+
+
+
+# =====================================================
+# QUESTION 9: Check whether an element exists within a tuple
+# =====================================================
+
+raw = input("Enter elements (comma-separated): ")
+t1 = tuple(p.strip() for p in raw.split(",") if p.strip() != "")
+target = input("Enter an element to search: ").strip()
+print(target in t1)
+
+# Explanation:
+# 1) Build the tuple.
+# 2) Use the 'in' operator to test membership.
+# 3) Print True/False.
+
+
+
+# =====================================================
+# QUESTION 10: Convert a list to a tuple
+# =====================================================
+
+raw = input("Enter list elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+t1 = tuple(lst)
+print(t1)
+
+# Explanation:
+# 1) Create a list of cleaned strings.
+# 2) Pass it to tuple() to convert to a tuple.
+# 3) Print the tuple.
+
+
+
+# =====================================================
+# QUESTION 11: Remove an item from a tuple
+# =====================================================
+
+raw = input("Enter tuple elements (comma-separated): ")
+t1 = tuple(p.strip() for p in raw.split(",") if p.strip() != "")
+target = input("Enter an item to remove: ").strip()
+t2 = tuple(x for x in t1 if x != target)
+print(t2)
+
+# Explanation:
+# 1) Tuples are immutable; cannot remove in place.
+# 2) Build a new tuple including only items not equal to target.
+# 3) Print the new tuple.
+
+
+
+# =====================================================
+# QUESTION 12: Count elements in a list until an element is a tuple
+# =====================================================
+
+lst = [1, 2, 3, (4, 5), 6, 7]
+count = 0
+for x in lst:
+    if isinstance(x, tuple):
+        break
+    count += 1
+print(count)
+
+# Explanation:
+# 1) Use a sample mixed list with numbers and a tuple.
+# 2) Iterate and stop when a tuple is found.
+# 3) Print how many elements occur before the first tuple.
+
+
+
+# =====================================================
+# QUESTION 13: Slice a tuple
+# =====================================================
+
+raw = input("Enter tuple elements (comma-separated): ")
+t1 = tuple(p.strip() for p in raw.split(",") if p.strip() != "")
+start = input("Enter start index (blank for None): ").strip()
+stop = input("Enter stop index (blank for None): ").strip()
+step = input("Enter step (blank for None): ").strip()
+
+s = slice(int(start) if start != "" else None,
+          int(stop) if stop != "" else None,
+          int(step) if step != "" else None)
+
+print(t1[s])
+
+# Explanation:
+# 1) Read a tuple and slicing parameters.
+# 2) Convert blank to None; otherwise parse ints.
+# 3) Use slice() and print the sliced tuple.
+
+
+
+# =====================================================
+# QUESTION 14: Find the index of an item in a tuple
+# =====================================================
+
+raw = input("Enter tuple elements (comma-separated): ")
+t1 = tuple(p.strip() for p in raw.split(",") if p.strip() != "")
+key = input("Enter item to search index for: ").strip()
+if key in t1:
+    print(t1.index(key))
+else:
+    print("Item not found")
+
+# Explanation:
+# 1) Build the tuple and read the target.
+# 2) Use index() if present; otherwise show a helpful message.
+
+
+
+# =====================================================
+# QUESTION 15: Find the length of a tuple
+# =====================================================
+
+raw = input("Enter tuple elements (comma-separated): ")
+t1 = tuple(p.strip() for p in raw.split(",") if p.strip() != "")
+print(len(t1))
+
+# Explanation:
+# 1) Build the tuple.
+# 2) len(tuple) gives the number of elements.
+
+
+
+# =====================================================
+# QUESTION 16: Convert a tuple to a dictionary
+# =====================================================
+
+t1 = (("a", 1), ("b", 2), ("c", 3))
+d = dict(t1)
+print(d)
+
+# Explanation:
+# 1) Use a tuple of 2-item tuples (key, value).
+# 2) dict(tuple_of_pairs) creates a dictionary.
+
+
+
+# =====================================================
+# QUESTION 17: Unzip a list of tuples into individual lists
+# =====================================================
+
+pairs = [(1, "a"), (2, "b"), (3, "c")]
+a_list, b_list = zip(*pairs)
+a_list = list(a_list)
+b_list = list(b_list)
+print(a_list)
+print(b_list)
+
+# Explanation:
+# 1) zip(*pairs) transposes pairs into two sequences.
+# 2) Convert them to lists and print.
+
+
+
+# =====================================================
+# QUESTION 18: Reverse a tuple
+# =====================================================
+
+raw = input("Enter elements (comma-separated): ")
+t1 = tuple(p.strip() for p in raw.split(",") if p.strip() != "")
+t2 = t1[::-1]
+print(t2)
+
+# Explanation:
+# 1) Build a tuple.
+# 2) Use slicing with step -1 to reverse.
+# 3) Print the reversed tuple.
+
+
+
+# =====================================================
+# QUESTION 19: Convert a list of tuples into a dictionary
+# =====================================================
+
+pairs = [("x", 1), ("y", 2), ("z", 3)]
+d = dict(pairs)
+print(d)
+
+# Explanation:
+# 1) Start from a list of 2-item tuples.
+# 2) dict() converts it to a dictionary.
+
+
+
+# =====================================================
+# QUESTION 20: Print a tuple with string formatting
+# =====================================================
+
+t1 = (100, 200, 300)
+print("This is a tuple", t1)
+
+# Explanation:
+# 1) Use the sample tuple (100, 200, 300).
+# 2) Print it in a formatted message.
+
+
+
+# =====================================================
+# QUESTION 21: Replace last value of tuples in a list
+# =====================================================
+
+lst = [(10, 20, 40), (40, 50, 60), (70, 80, 90)]
+new_last = 100
+out = []
+for tup in lst:
+    if len(tup) > 0:
+        out.append(tup[:-1] + (new_last,))
+    else:
+        out.append(tup)
+print(out)
+
+# Explanation:
+# 1) For each tuple, keep all but the last item and append 100.
+# 2) Collect into a new list and print.
+
+
+
+# =====================================================
+# QUESTION 22: Remove empty tuple(s) from a list of tuples
+# =====================================================
+
+data = [(), (), ('',), ('a', 'b'), ('a', 'b', 'c'), ('d')]
+out = [x for x in data if x != ()]
+print(out)
+
+# Explanation:
+# 1) data contains empty tuples and non-empty items.
+# 2) Keep everything except the empty tuple ().  Note: ('d') is a string, not a tuple.
+# 3) Print the filtered list.
+
+
+
+# =====================================================
+# QUESTION 23: Sort a tuple by its float element (descending as per sample)
+# =====================================================
+
+t1 = (('item1', '12.20'), ('item2', '15.10'), ('item3', '24.5'))
+t_sorted = tuple(sorted(t1, key=lambda x: float(x[1]), reverse=True))
+print(t_sorted)
+
+# Explanation:
+# 1) Convert the second element to float for sorting.
+# 2) Sort in descending order and convert back to a tuple.
+
+
+
+# =====================================================
+# QUESTION 24: (Not provided in source PDF)
+# =====================================================
+
+# No question provided.
+
+# Explanation:
+# The original list jumps from 23 to 25. This slot is intentionally left blank.
+
+
+
+# =====================================================
+# QUESTION 25: Convert a given string to a tuple of characters
+# =====================================================
+
+s = input("Enter a string: ")
+chars = tuple(ch for ch in s if ch != " ")
+print(chars)
+print(type(chars))
+
+# Explanation:
+# 1) Read a string.
+# 2) Build a tuple of its characters; spaces removed to match common samples.
+# 3) Print the tuple and its type.
+
+
+
+# =====================================================
+# QUESTION 26: Calculate the product of all numbers in a tuple
+# =====================================================
+
+raw = input("Enter integers separated by commas: ")
+parts = raw.split(",")
+nums = tuple(int(p.strip()) for p in parts if p.strip() != "")
+
+prod = 1
+for n in nums:
+    prod *= n
+print(prod)
+
+# Explanation:
+# 1) Read integers into a tuple.
+# 2) Multiply them one by one starting from 1.
+# 3) Print the final product.
+
+
+
+# =====================================================
+# QUESTION 27: Calculate the average value per position in a tuple of tuples
+# =====================================================
+
+tots = ((10, 10, 10, 12), (30, 45, 56, 45), (81, 80, 39, 32), (1, 2, 3, 4))
+cols = len(tots[0])
+averages = []
+for c in range(cols):
+    s = 0
+    for row in tots:
+        s += row[c]
+    averages.append(s / len(tots))
+print(averages)
+
+# Explanation:
+# 1) For each column index, sum that position across all inner tuples.
+# 2) Divide by the number of rows to get the average.
+# 3) Collect averages in a list and print it.
+
+
+
+# =====================================================
+# QUESTION 28: Convert a tuple of string values to a tuple of integer values
+# =====================================================
+
+t1 = (('333', '33'), ('1416', '55'))
+t2 = tuple((int(a), int(b)) for (a, b) in t1)
+print(t2)
+
+# Explanation:
+# 1) Each inner pair has numeric strings.
+# 2) Convert them to ints and keep the same structure.
+
+
+
+# =====================================================
+# QUESTION 29: Convert a tuple of positive integers into a single integer (concatenation)
+# =====================================================
+
+raw = input("Enter positive integers separated by commas: ")
+parts = raw.split(",")
+nums = tuple(int(p.strip()) for p in parts if p.strip() != "")
+s = "".join(str(n) for n in nums)
+print(int(s))
+
+# Explanation:
+# 1) Read positive integers into a tuple.
+# 2) Convert each to string and concatenate.
+# 3) Convert back to int and print.
+
+
+
+# =====================================================
+# QUESTION 30: Check if a specified element is present in a tuple of tuples
+# =====================================================
+
+colors = (('Red', 'White', 'Blue'),
+          ('Green', 'Pink', 'Purple'),
+          ('Orange', 'Yellow', 'Lime'))
+target = input("Enter value to search (e.g., 'White'): ").strip()
+
+found = False
+for sub in colors:
+    if target in sub:
+        found = True
+        break
+print(found)
+
+# Explanation:
+# 1) Scan each inner tuple and check membership with 'in'.
+# 2) If found anywhere, print True; otherwise False.
+
+
+
+# =====================================================
+# QUESTION 31: Compute element-wise sum of given tuples
+# =====================================================
+
+t1 = (1, 2, 3, 4)
+t2 = (3, 5, 2, 1)
+t3 = (2, 2, 3, 1)
+summed = tuple(t1[i] + t2[i] + t3[i] for i in range(len(t1)))
+print(summed)
+
+# Explanation:
+# 1) Add items at the same position across all tuples.
+# 2) Store in a new tuple and print.
+
+
+
+# =====================================================
+# QUESTION 32: Sum of all elements of each tuple in a list of tuples
+# =====================================================
+
+lst = [(1, 2), (2, 3), (3, 4), (2, 2, 2, 2)]
+out = []
+for tup in lst:
+    s = 0
+    for x in tup:
+        s += x
+    out.append(s)
+print(out)
+
+# Explanation:
+# 1) For each inner tuple, sum its elements manually.
+# 2) Collect each sum into a list and print it.
+
+
+
+# =====================================================
+# QUESTION 33: Convert a given list of tuples to a list of lists
+# =====================================================
+
+lst = [(1, 2), (2, 3, 5), (3, 4), (2, 3, 4, 2)]
+out = [list(t) for t in lst]
+print(out)
+
+# Explanation:
+# 1) Go through each tuple and convert it to a list.
+# 2) Keep the structure as a list of lists and print.
