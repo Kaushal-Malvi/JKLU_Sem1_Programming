@@ -12,9 +12,9 @@ All program files originally belong to the respective faculty members of **JK La
 ---
 
 ## 📂 Contents
-- `lab_solutions/` – Programs submitted for lab assignments  
-- `class_practice/` – Solutions to questions given during lectures  
-- `extras/` – Additional files, notes, or supporting scripts  
+- `Programming_Lab/` – Programs submitted for lab assignments  
+- `Topicwise_Materials/` – Notes, explanations, and reference content  
+- `Topicwise_Practice/` – Practice questions with solutions  
 
 ---
 
