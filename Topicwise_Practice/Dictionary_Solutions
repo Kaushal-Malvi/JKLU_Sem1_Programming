@@ -1,0 +1,1741 @@
+# =====================================================
+# QUESTION 1: Sort a dictionary by value (ascending & descending)
+# =====================================================
+
+import operator
+
+raw = input("Enter key:value pairs separated by commas (e.g., a:2,b:4,c:1): ").strip()
+pairs = [p for p in raw.split(",") if p.strip() != ""]
+d1 = {}
+for p in pairs:
+    if ":" in p:
+        k, v = p.split(":", 1)
+        k = k.strip()
+        v = v.strip()
+        d1[k] = int(v) if v.lstrip("-").isdigit() else v
+
+asc = sorted(d1.items(), key=operator.itemgetter(1))
+desc = sorted(d1.items(), key=operator.itemgetter(1), reverse=True)
+print(asc)
+print(desc)
+
+# Explanation:
+# 1) Read key:value pairs and build a dict.
+# 2) Use sorted(..., key=operator.itemgetter(1)) to sort by values.
+# 3) Print ascending and descending lists of (key, value) tuples.
+
+
+
+# =====================================================
+# QUESTION 2: Add a key to a dictionary
+# =====================================================
+
+raw = input("Enter base dict key:value pairs (e.g., 0:10,1:20): ")
+pairs = [p for p in raw.split(",") if p.strip() != ""]
+d1 = {}
+for p in pairs:
+    if ":" in p:
+        k, v = p.split(":", 1)
+        d1[k.strip()] = int(v.strip()) if v.strip().lstrip("-").isdigit() else v.strip()
+
+new_k = input("Enter new key: ").strip()
+new_v = input("Enter new value: ").strip()
+d1[new_k] = int(new_v) if new_v.lstrip("-").isdigit() else new_v
+print(d1)
+
+# Explanation:
+# 1) Build dict from input.
+# 2) Assign d1[new_k] = new_v to add the new pair.
+# 3) Print the updated dict.
+
+
+
+# =====================================================
+# QUESTION 3: Concatenate multiple dictionaries
+# =====================================================
+
+raw1 = input("Enter dict 1 (e.g., 1:10,2:20): ")
+raw2 = input("Enter dict 2 (e.g., 3:30,4:40): ")
+raw3 = input("Enter dict 3 (e.g., 5:50,6:60): ")
+
+def parse_dict(raw):
+    d = {}
+    parts = [p for p in raw.split(",") if p.strip() != ""]
+    for p in parts:
+        if ":" in p:
+            k, v = p.split(":", 1)
+            k = k.strip()
+            v = v.strip()
+            d[k] = int(v) if v.lstrip("-").isdigit() else v
+    return d
+
+d1 = parse_dict(raw1)
+d2 = parse_dict(raw2)
+d3 = parse_dict(raw3)
+
+d_new = {}
+for d in (d1, d2, d3):
+    for k, v in d.items():
+        d_new[k] = v
+
+print(d_new)
+
+# Explanation:
+# 1) Parse each input into a dict.
+# 2) Create a new dict and copy keys from each.
+# 3) Later dicts overwrite earlier keys if duplicated.
+
+
+
+# =====================================================
+# QUESTION 4: Check whether a given key exists in a dictionary
+# =====================================================
+
+raw = input("Enter dict (e.g., a:1,b:2): ")
+parts = [p for p in raw.split(",") if p.strip() != ""]
+d1 = {}
+for p in parts:
+    if ":" in p:
+        k, v = p.split(":", 1)
+        d1[k.strip()] = v.strip()
+
+qk = input("Enter key to check: ").strip()
+print(qk in d1)
+
+# Explanation:
+# 1) Build the dict.
+# 2) Use `in` on dict to test key presence.
+# 3) Print True/False.
+
+
+
+# =====================================================
+# QUESTION 5: Iterate over dictionary using for-loop
+# =====================================================
+
+raw = input("Enter dict (e.g., a:10,b:20,c:30): ")
+parts = [p for p in raw.split(",") if p.strip() != ""]
+d1 = {}
+for p in parts:
+    if ":" in p:
+        k, v = p.split(":", 1)
+        d1[k.strip()] = v.strip()
+
+for k, v in d1.items():
+    print(k, v)
+
+# Explanation:
+# 1) Build dict from user input.
+# 2) Iterate with dict.items() to get (key, value).
+# 3) Print key and value.
+
+
+
+# =====================================================
+# QUESTION 6: Generate dict {x: x*x} for 1..n
+# =====================================================
+
+n = int(input("Enter n: ").strip())
+d1 = {}
+for x in range(1, n+1):
+    d1[x] = x*x
+print(d1)
+
+# Explanation:
+# 1) Read n.
+# 2) Loop 1..n and map x -> x*x.
+# 3) Print the dictionary.
+
+
+
+# =====================================================
+# QUESTION 7: Keys 1..15 with square values
+# =====================================================
+
+d1 = {}
+for x in range(1, 16):
+    d1[x] = x*x
+print(d1)
+
+# Explanation:
+# 1) Create keys from 1 to 15.
+# 2) Value is the square of the key.
+# 3) Print the dictionary.
+
+
+
+# =====================================================
+# QUESTION 8: Merge two dictionaries
+# =====================================================
+
+raw1 = input("Enter dict 1 (e.g., a:1,b:2): ")
+raw2 = input("Enter dict 2 (e.g., b:9,c:3): ")
+
+def parse_dict(raw):
+    d = {}
+    parts = [p for p in raw.split(",") if p.strip() != ""]
+    for p in parts:
+        if ":" in p:
+            k, v = p.split(":", 1)
+            d[k.strip()] = v.strip()
+    return d
+
+d1 = parse_dict(raw1)
+d2 = parse_dict(raw2)
+
+d_merged = d1.copy()
+d_merged.update(d2)
+print(d_merged)
+
+# Explanation:
+# 1) Parse both dicts.
+# 2) Copy dict1 and update with dict2.
+# 3) Keys in dict2 overwrite dict1 on conflict.
+
+
+
+# =====================================================
+# QUESTION 9: Iterate over dictionary (keys/values/items)
+# =====================================================
+
+raw = input("Enter dict (e.g., a:10,b:20): ")
+d1 = {}
+for p in [x for x in raw.split(',') if x.strip() != '']:
+    if ':' in p:
+        k, v = p.split(':', 1)
+        d1[k.strip()] = v.strip()
+
+for k in d1:
+    print("key:", k)
+for v in d1.values():
+    print("value:", v)
+for k, v in d1.items():
+    print("item:", k, v)
+
+# Explanation:
+# 1) Show three styles of iteration.
+# 2) keys(), values(), and items().
+# 3) Print results plainly.
+
+
+
+# =====================================================
+# QUESTION 10: Sum all the items (values) in a dictionary
+# =====================================================
+
+raw = input("Enter dict with numeric values (e.g., a:1,b:2,c:3): ")
+d1 = {}
+for p in [x for x in raw.split(',') if x.strip() != '']:
+    if ':' in p:
+        k, v = p.split(':', 1)
+        v = v.strip()
+        d1[k.strip()] = float(v) if (v.replace('.','',1).lstrip('-').isdigit()) else 0
+
+s = 0
+for v in d1.values():
+    s += v
+print(s)
+
+# Explanation:
+# 1) Parse numeric values; fallback to 0 if invalid.
+# 2) Add all values.
+# 3) Print the sum.
+
+
+
+# =====================================================
+# QUESTION 11: Multiply all the items (values) in a dictionary
+# =====================================================
+
+raw = input("Enter dict with numeric values (e.g., a:2,b:3,c:4): ")
+d1 = {}
+for p in [x for x in raw.split(',') if x.strip() != '']:
+    if ':' in p:
+        k, v = p.split(':', 1)
+        v = v.strip()
+        d1[k.strip()] = float(v) if (v.replace('.','',1).lstrip('-').isdigit()) else 1
+
+prod = 1
+for v in d1.values():
+    prod *= v
+print(prod)
+
+# Explanation:
+# 1) Parse numeric values; fallback to 1 if invalid.
+# 2) Multiply all values together.
+# 3) Print the product.
+
+
+
+# =====================================================
+# QUESTION 12: Remove a key from a dictionary
+# =====================================================
+
+raw = input("Enter dict (e.g., a:1,b:2,c:3): ")
+d1 = {}
+for p in [x for x in raw.split(',') if x.strip() != '']:
+    if ':' in p:
+        k, v = p.split(':', 1)
+        d1[k.strip()] = v.strip()
+
+krem = input("Enter key to remove: ").strip()
+if krem in d1:
+    del d1[krem]
+print(d1)
+
+# Explanation:
+# 1) Build dict and read key to delete.
+# 2) Use del d1[key] if it exists.
+# 3) Print updated dict.
+
+
+
+# =====================================================
+# QUESTION 13: Map two lists into a dictionary
+# =====================================================
+
+keys_raw = input("Enter keys (comma-separated): ")
+vals_raw = input("Enter values (comma-separated): ")
+keys = [k.strip() for k in keys_raw.split(",") if k.strip() != ""]
+vals = [v.strip() for v in vals_raw.split(",") if v.strip() != ""]
+d1 = {}
+for i in range(min(len(keys), len(vals))):
+    d1[keys[i]] = vals[i]
+print(d1)
+
+# Explanation:
+# 1) Read keys list and values list.
+# 2) Pair by index into dict.
+# 3) Ignore extras if lengths differ.
+
+
+
+# =====================================================
+# QUESTION 14: Sort a dictionary by key
+# =====================================================
+
+raw = input("Enter dict (e.g., b:2,a:3,c:1): ")
+d1 = {}
+for p in [x for x in raw.split(',') if x.strip() != '']:
+    if ':' in p:
+        k, v = p.split(':', 1)
+        d1[k.strip()] = v.strip()
+
+sorted_items = sorted(d1.items(), key=lambda x: x[0])
+print(sorted_items)
+
+# Explanation:
+# 1) Build dict then sort by key using lambda x[0].
+# 2) Print sorted list of (key, value) pairs.
+
+
+
+# =====================================================
+# QUESTION 15: Get maximum and minimum value in a dictionary
+# =====================================================
+
+raw = input("Enter dict with numeric values (e.g., a:10,b:3,c:7): ")
+d1 = {}
+for p in [x for x in raw.split(',') if x.strip() != '']:
+    if ':' in p:
+        k, v = p.split(':', 1)
+        v = v.strip()
+        d1[k.strip()] = float(v) if (v.replace('.','',1).lstrip('-').isdigit()) else 0
+
+vals = list(d1.values())
+if len(vals) > 0:
+    print(max(vals), min(vals))
+else:
+    print("Empty")
+# Explanation:
+# 1) Parse numeric values.
+# 2) Use max() and min() on value list if not empty.
+# 3) Print result.
+
+
+
+# =====================================================
+# QUESTION 16: Get a dictionary from an object's fields
+# =====================================================
+
+class C:
+    def __init__(self):
+        self.x = 10
+        self.y = 20
+
+obj = C()
+d1 = obj.__dict__
+print(d1)
+
+# Explanation:
+# 1) __dict__ exposes an object's attribute dictionary.
+# 2) Print it directly.
+
+
+
+# =====================================================
+# QUESTION 17: Remove duplicates from Dictionary (values)
+# =====================================================
+
+raw = input("Enter dict (e.g., a:1,b:2,c:1): ")
+d1 = {}
+for p in [x for x in raw.split(',') if x.strip() != '']:
+    if ':' in p:
+        k, v = p.split(':', 1)
+        d1[k.strip()] = v.strip()
+
+seen = set()
+d2 = {}
+for k, v in d1.items():
+    if v not in seen:
+        d2[k] = v
+        seen.add(v)
+print(d2)
+
+# Explanation:
+# 1) Track seen values.
+# 2) Keep first key for each distinct value.
+# 3) Print de-duplicated dict.
+
+
+
+# =====================================================
+# QUESTION 18: Check if a dictionary is empty
+# =====================================================
+
+raw = input("Enter dict (leave blank for empty): ").strip()
+if raw == "":
+    d1 = {}
+else:
+    d1 = {}
+    for p in [x for x in raw.split(',') if x.strip() != '']:
+        if ':' in p:
+            k, v = p.split(':', 1)
+            d1[k.strip()] = v.strip()
+
+print(len(d1) == 0)
+
+# Explanation:
+# 1) Build dict if input given else {}.
+# 2) Check len(d)==0.
+# 3) Print True/False.
+
+
+
+# =====================================================
+# QUESTION 19: Combine two dicts adding values for common keys
+# =====================================================
+
+from collections import Counter
+
+raw1 = input("Enter dict 1 (e.g., a:100,b:200,c:300): ")
+raw2 = input("Enter dict 2 (e.g., a:300,b:200,d:400): ")
+
+def parse_num_dict(raw):
+    d = {}
+    for p in [x for x in raw.split(',') if x.strip() != '']:
+        if ':' in p:
+            k, v = p.split(':', 1)
+            v = v.strip()
+            d[k.strip()] = float(v) if (v.replace('.','',1).lstrip('-').isdigit()) else 0
+    return d
+
+d1 = parse_num_dict(raw1)
+d2 = parse_num_dict(raw2)
+
+c = Counter(d1) + Counter(d2)
+print(c)
+
+# Explanation:
+# 1) Use Counter to add values per key.
+# 2) Missing keys treated as 0.
+# 3) Print combined Counter.
+
+
+
+# =====================================================
+# QUESTION 20: Print all unique values in a list of dicts
+# =====================================================
+
+raw = input("Enter list of dicts values like V:S001;V:S002;VI:S001 (semicolon-separated): ").strip()
+pairs = [p for p in raw.split(";") if p.strip() != ""]
+uniq = set()
+for p in pairs:
+    if ":" in p:
+        k, v = p.split(":", 1)
+        uniq.add(v.strip())
+print(uniq)
+
+# Explanation:
+# 1) Read many small dict items as key:value segments.
+# 2) Collect all values into a set.
+# 3) Print unique values.
+
+
+
+# =====================================================
+# QUESTION 21: All combinations by picking one letter from each key's list
+# =====================================================
+
+raw = input("Enter dict of lists like 1:a b,2:c d : ").strip()
+# Parse: keys separated by commas; each value is space-separated tokens
+d1 = {}
+for seg in [s for s in raw.split(",") if s.strip() != ""]:
+    if ":" in seg:
+        k, vs = seg.split(":", 1)
+        d1[k.strip()] = [x for x in vs.strip().split() if x != ""]
+
+# collect keys in order of appearance
+keys = list(d1.keys())
+out = []
+
+def backtrack(i, path):
+    if i == len(keys):
+        print("".join(path))
+        return
+    k = keys[i]
+    for ch in d1[k]:
+        path.append(ch)
+        backtrack(i+1, path)
+        path.pop()
+
+backtrack(0, [])
+
+# Explanation:
+# 1) Each key has a list of letters.
+# 2) Use DFS/backtracking to pick one from each key in order.
+# 3) Print all combinations.
+
+
+
+# =====================================================
+# QUESTION 22: Find highest 3 values' keys in a dictionary
+# =====================================================
+
+raw = input("Enter dict with numeric values (e.g., a:10,b:50,c:30,d:40): ")
+d1 = {}
+for p in [x for x in raw.split(',') if x.strip() != '']:
+    if ':' in p:
+        k, v = p.split(':', 1)
+        v = float(v.strip()) if (v.strip().replace('.','',1).lstrip('-').isdigit()) else 0
+        d1[k.strip()] = v
+
+top = sorted(d1.items(), key=lambda x: x[1], reverse=True)[:3]
+print([k for k, _ in top])
+
+# Explanation:
+# 1) Parse numeric values.
+# 2) Sort by value descending and slice first 3.
+# 3) Print the keys.
+
+
+
+# =====================================================
+# QUESTION 23: Combine values in a list of dicts (sum amounts per item)
+# =====================================================
+
+rawn = int(input("Enter number of entries: ").strip())
+lst = []
+for _ in range(rawn):
+    item = input("item: ").strip()
+    amt = float(input("amount: ").strip())
+    lst.append({'item': item, 'amount': amt})
+
+tot = {}
+for row in lst:
+    k = row['item']
+    v = row['amount']
+    tot[k] = tot.get(k, 0) + v
+print(tot)
+
+# Explanation:
+# 1) Read a list of {'item', 'amount'}.
+# 2) Sum amounts per item into a dict.
+# 3) Print totals.
+
+
+
+# =====================================================
+# QUESTION 24: Create a dictionary from a string (char counts)
+# =====================================================
+
+s = input("Enter a string: ").strip()
+d1 = {}
+for ch in s:
+    d1[ch] = d1.get(ch, 0) + 1
+print(d1)
+
+# Explanation:
+# 1) Walk the string char by char.
+# 2) Count occurrences in a dict.
+# 3) Print frequency dict.
+
+
+
+# =====================================================
+# QUESTION 25: Print a dictionary in table format
+# =====================================================
+
+raw = input("Enter dict (e.g., a:10,b:20,c:30): ")
+d1 = {}
+for p in [x for x in raw.split(',') if x.strip() != '']:
+    if ':' in p:
+        k, v = p.split(':', 1)
+        d1[k.strip()] = v.strip()
+
+print("Key\tValue")
+for k, v in d1.items():
+    print(f"{k}\t{v}")
+
+# Explanation:
+# 1) Build dict.
+# 2) Print header then rows as tab-separated columns.
+# 3) Simple table view in console.
+
+
+
+# =====================================================
+# QUESTION 26: Count the values associated with key in a dict of lists
+# =====================================================
+
+rawn = int(input("Enter number of keys: ").strip())
+d1 = {}
+for _ in range(rawn):
+    k = input("key: ").strip()
+    vs = input("values for key (space-separated): ").strip().split()
+    d1[k] = vs
+target = input("Enter key to count its values: ").strip()
+print(len(d1.get(target, [])))
+
+# Explanation:
+# 1) Dict values are lists.
+# 2) len(dict[key]) gives how many items belong to that key.
+# 3) If key missing, treat as empty list.
+
+
+
+# =====================================================
+# QUESTION 27: Convert a list into a nested dictionary of keys
+# =====================================================
+
+keys = input("Enter keys (space-separated): ").strip().split()
+# Build nested like {'a': {'b': {'c': {}}}}
+if len(keys) == 0:
+    d1 = {}
+else:
+    d1 = {keys[-1]: {}}
+    i = len(keys) - 2
+    while i >= 0:
+        d1 = {keys[i]: d1}
+        i -= 1
+print(d1)
+
+# Explanation:
+# 1) Start from the last key and wrap inside-out.
+# 2) Each step nests previous dict under current key.
+# 3) Print nested structure.
+
+
+
+# =====================================================
+# QUESTION 28: Sort a list (value) alphabetically inside a dictionary
+# =====================================================
+
+rawn = int(input("Enter number of keys: ").strip())
+d1 = {}
+for _ in range(rawn):
+    k = input("key: ").strip()
+    vs = input("values (space-separated): ").strip().split()
+    d1[k] = vs
+
+for k in d1:
+    d1[k] = sorted(d1[k])
+print(d1)
+
+# Explanation:
+# 1) Dict values are lists.
+# 2) Sort each list in place.
+# 3) Print updated dictionary.
+
+
+
+# =====================================================
+# QUESTION 29: Remove spaces from dictionary keys
+# =====================================================
+
+raw = input("Enter dict with spaced keys (e.g., 'a b':1,'c d':2) use commas: ").strip()
+d1 = {}
+for seg in [s for s in raw.split(",") if s.strip() != ""]:
+    if ":" in seg:
+        k, v = seg.split(":", 1)
+        k2 = k.strip().replace(" ", "")
+        d1[k2] = v.strip()
+print(d1)
+
+# Explanation:
+# 1) Replace spaces in each key with empty string.
+# 2) Preserve values.
+# 3) Print cleaned dict.
+
+
+
+# =====================================================
+# QUESTION 30: Get the top three items in a shop (by price)
+# =====================================================
+
+raw = input("Enter item:price pairs (e.g., item1:45.5,item2:35,item3:41.3,item4:55,item5:24): ")
+d1 = {}
+for seg in [s for s in raw.split(",") if s.strip() != ""]:
+    if ":" in seg:
+        k, v = seg.split(":", 1)
+        try:
+            d1[k.strip()] = float(v.strip())
+        except:
+            pass
+top = sorted(d1.items(), key=lambda x: x[1], reverse=True)[:3]
+for k, v in top:
+    print(k, v)
+
+# Explanation:
+# 1) Parse item prices as float.
+# 2) Sort descending by price and print top 3.
+# 3) Show item name and price.
+
+
+
+# =====================================================
+# QUESTION 31: Get key, value and item in a dictionary
+# =====================================================
+
+raw = input("Enter dict (e.g., a:10,b:20): ").strip()
+d1 = {}
+for seg in [s for s in raw.split(",") if s.strip() != ""]:
+    if ":" in seg:
+        k, v = seg.split(":", 1)
+        d1[k.strip()] = v.strip()
+
+print(list(d1.keys()))
+print(list(d1.values()))
+print(list(d1.items()))
+
+# Explanation:
+# 1) keys(), values(), items() give views.
+# 2) Convert to lists for display.
+# 3) Print all three.
+
+
+
+# =====================================================
+# QUESTION 32: Print a dictionary line by line
+# =====================================================
+
+raw = input("Enter dict (e.g., a:10,b:20,c:30): ").strip()
+d1 = {}
+for seg in [s for s in raw.split(",") if s.strip() != ""]:
+    if ":" in seg:
+        k, v = seg.split(":", 1)
+        d1[k.strip()] = v.strip()
+
+for k, v in d1.items():
+    print(k, v)
+
+# Explanation:
+# 1) Iterate items.
+# 2) Print each key and value on its own line.
+# 3) Simple readable output.
+
+
+
+# =====================================================
+# QUESTION 33: Check multiple keys exist in a dictionary
+# =====================================================
+
+raw = input("Enter dict (e.g., a:1,b:2,c:3): ").strip()
+d1 = {}
+for seg in [s for s in raw.split(",") if s.strip() != ""]:
+    if ":" in seg:
+        k, v = seg.split(":", 1)
+        d1[k.strip()] = v.strip()
+
+need = input("Enter required keys (space-separated): ").strip().split()
+ok = all(k in d1 for k in need)
+print(ok)
+
+# Explanation:
+# 1) Read required key list.
+# 2) all(k in dict) checks presence of every key.
+# 3) Print True/False.
+
+
+
+# =====================================================
+# QUESTION 34: Count number of items in a dictionary value that is a list
+# =====================================================
+
+rawn = int(input("Enter number of keys: ").strip())
+d1 = {}
+for _ in range(rawn):
+    k = input("key: ").strip()
+    vs = input("values (space-separated): ").strip().split()
+    d1[k] = vs
+
+target = input("Enter key to count: ").strip()
+print(len(d1.get(target, [])))
+
+# Explanation:
+# 1) Dict values are lists.
+# 2) len(list) gives the number of items stored for that key.
+# 3) Print the count.
+
+
+
+# =====================================================
+# QUESTION 35: Sort Counter by value
+# =====================================================
+
+raw = input("Enter subject:marks pairs (e.g., Math:81,Physics:83,Chemistry:87): ").strip()
+from collections import Counter
+c = Counter()
+for seg in [s for s in raw.split(",") if s.strip() != ""]:
+    if ":" in seg:
+        k, v = seg.split(":", 1)
+        try:
+            c[k.strip()] = int(v.strip())
+        except:
+            c[k.strip()] = 0
+
+out = sorted(c.items(), key=lambda x: x[1], reverse=True)
+print(out)
+
+# Explanation:
+# 1) Fill Counter with marks.
+# 2) Sort items by value descending.
+# 3) Print list of pairs.
+
+
+
+# =====================================================
+# QUESTION 36: Create dict from two lists without losing duplicate values
+# =====================================================
+
+from collections import defaultdict
+
+keys = input("Enter keys (comma-separated): ").strip().split(",")
+vals = input("Enter values (comma-separated): ").strip().split(",")
+keys = [k.strip() for k in keys if k.strip() != ""]
+vals = [v.strip() for v in vals if v.strip() != ""]
+
+d1 = defaultdict(set)
+for i in range(min(len(keys), len(vals))):
+    d1[keys[i]].add(int(vals[i]) if vals[i].lstrip("-").isdigit() else vals[i])
+print(d1)
+
+# Explanation:
+# 1) Use defaultdict(set) so each key maps to a set of values.
+# 2) Add each pair to the set; duplicates naturally collapse.
+# 3) Print the defaultdict.
+
+
+
+# =====================================================
+# QUESTION 37: Replace dictionary values with their average
+# =====================================================
+
+rawn = int(input("How many keys? ").strip())
+d1 = {}
+for _ in range(rawn):
+    k = input("key: ").strip()
+    nums = [float(x) for x in input("numbers (space-separated): ").strip().split() if x.strip() != ""]
+    d1[k] = nums
+
+for k, vs in d1.items():
+    if len(vs) > 0:
+        d1[k] = sum(vs)/len(vs)
+    else:
+        d1[k] = 0
+print(d1)
+
+# Explanation:
+# 1) Values are lists of numbers.
+# 2) Replace each list with its average; 0 if empty.
+# 3) Print the new dict.
+
+
+
+# =====================================================
+# QUESTION 38: Match key values in two dictionaries
+# =====================================================
+
+raw1 = input("Enter dict x (e.g., key1:1,key2:3,key3:2): ").strip()
+raw2 = input("Enter dict y (e.g., key1:1,key2:2): ").strip()
+
+def parse_num_dict(raw):
+    d = {}
+    for seg in [s for s in raw.split(",") if s.strip() != ""]:
+        if ":" in seg:
+            k, v = seg.split(":", 1)
+            v = v.strip()
+            d[k.strip()] = float(v) if (v.replace('.','',1).lstrip('-').isdigit()) else v
+    return d
+
+x = parse_num_dict(raw1)
+y = parse_num_dict(raw2)
+
+for k in x:
+    if k in y and x[k] == y[k]:
+        print(f"{k}: {x[k]} is present in both x and y")
+
+# Explanation:
+# 1) Parse two dicts.
+# 2) For shared keys, compare values.
+# 3) Print matches.
+
+
+
+# =====================================================
+# QUESTION 39: Store a given dictionary in a JSON file and read it back
+# =====================================================
+
+import json
+
+n = int(input("How many student records? ").strip())
+d1 = {"students": [], "teachers": []}
+for _ in range(n):
+    f = input("student firstName: ").strip()
+    l = input("student lastName: ").strip()
+    d1["students"].append({"firstName": f, "lastName": l})
+
+m = int(input("How many teacher records? ").strip())
+for _ in range(m):
+    f = input("teacher firstName: ").strip()
+    l = input("teacher lastName: ").strip()
+    d1["teachers"].append({"firstName": f, "lastName": l})
+
+fname = "dict_io.json"
+with open(fname, "w", encoding="utf-8") as f:
+    json.dump(d1, f, ensure_ascii=False)
+
+with open(fname, "r", encoding="utf-8") as f:
+    d2 = json.load(f)
+print(type(d2))
+print(d2)
+
+# Explanation:
+# 1) Build a dict of students and teachers.
+# 2) Write to a JSON file and read it back.
+# 3) Print the loaded dict and its type.
+
+
+
+# =====================================================
+# QUESTION 40: Create x,y,z keys with specific ranges and access 5th value
+# =====================================================
+
+d1 = {
+    'x': list(range(11, 20)),
+    'y': list(range(21, 30)),
+    'z': list(range(31, 40))
+}
+print(d1['x'][4])
+print(d1['y'][4])
+print(d1['z'][4])
+print('x has value', d1['x'])
+print('y has value', d1['y'])
+print('z has value', d1['z'])
+
+# Explanation:
+# 1) Predefined ranges for x,y,z.
+# 2) Print 5th value (index 4) for each.
+# 3) Print full lists too.
+
+
+
+# =====================================================
+# QUESTION 41: Drop empty items from a dictionary
+# =====================================================
+
+raw = input("Enter dict (e.g., c1:Red,c2:Green,c3:None): ").strip()
+d1 = {}
+for seg in [s for s in raw.split(",") if s.strip() != ""]:
+    if ":" in seg:
+        k, v = seg.split(":", 1)
+        d1[k.strip()] = None if v.strip() == "None" else v.strip()
+
+d2 = {k: v for k, v in d1.items() if v not in (None, "")}
+print(d2)
+
+# Explanation:
+# 1) Treat the literal token 'None' as None.
+# 2) Keep items whose value is not None and not empty string.
+# 3) Print cleaned dict.
+
+
+
+# =====================================================
+# QUESTION 42: Filter a dictionary based on values
+# =====================================================
+
+raw = input("Enter name:mark pairs (e.g., 'A':175,'B':180): ").strip()
+d1 = {}
+for seg in [s for s in raw.split(",") if ":" in s]:
+    k, v = seg.split(":", 1)
+    k = k.strip().strip("'").strip('"')
+    try:
+        d1[k] = float(v)
+    except:
+        pass
+
+thr = float(input("Keep marks >= threshold: ").strip() or "170")
+d2 = {k: v for k, v in d1.items() if v >= thr}
+print(d2)
+
+# Explanation:
+# 1) Parse numeric marks.
+# 2) Keep entries where mark >= threshold (default 170).
+# 3) Print filtered dict.
+
+
+
+# =====================================================
+# QUESTION 43: Convert more than one list to nested dictionary
+# =====================================================
+
+codes = input("Enter codes (comma-separated): ").strip().split(",")
+names = input("Enter names (comma-separated): ").strip().split(",")
+marks = input("Enter marks (comma-separated): ").strip().split(",")
+codes = [c.strip() for c in codes if c.strip() != ""]
+names = [n.strip() for n in names if n.strip() != ""]
+marks = [m.strip() for m in marks if m.strip() != ""]
+
+out = []
+for i in range(min(len(codes), len(names), len(marks))):
+    try:
+        out.append({codes[i]: {names[i]: int(marks[i])}})
+    except:
+        out.append({codes[i]: {names[i]: marks[i]}})
+print(out)
+
+# Explanation:
+# 1) Zip the three lists by index.
+# 2) Build [{'code': {'name': mark}}, ...].
+# 3) Print the nested list of dicts.
+
+
+
+# =====================================================
+# QUESTION 44: Filter height>6 and weight>70 from dict of tuples
+# =====================================================
+
+d1 = {'Cierra Vega': (6.2, 70), 'Alden Cantrell': (5.9, 65), 'Kierra Gentry': (6.0, 68), 'Pierre Cox': (5.8, 66)}
+d2 = {k: v for k, v in d1.items() if v[0] > 6.0 and v[1] > 70}
+print(d2)
+
+# Explanation:
+# 1) Given dict of (height, weight).
+# 2) Keep entries with height>6 and weight>70.
+# 3) Print result.
+
+
+
+# =====================================================
+# QUESTION 45: Check all values are same in a dictionary
+# =====================================================
+
+raw = input("Enter dict (e.g., A:12,B:12,C:12): ").strip()
+d1 = {}
+for seg in [s for s in raw.split(",") if ":" in s]:
+    k, v = seg.split(":", 1)
+    d1[k.strip()] = v.strip()
+
+vals = list(d1.values())
+ok = all(v == vals[0] for v in vals) if vals else True
+print(ok)
+
+# Explanation:
+# 1) Compare all values to the first value.
+# 2) If all match, True; else False.
+# 3) Empty dict treated as True.
+
+
+
+# =====================================================
+# QUESTION 46: Group sequence of key-value pairs into a dict of lists
+# =====================================================
+
+pairs = [('yellow', 1), ('blue', 2), ('yellow', 3), ('blue', 4), ('red', 1)]
+d1 = {}
+for k, v in pairs:
+    d1.setdefault(k, []).append(v)
+print(d1)
+
+# Explanation:
+# 1) Use setdefault to append into list per key.
+# 2) Accumulate values in lists.
+# 3) Print grouped dict.
+
+
+
+# =====================================================
+# QUESTION 47: Split a dict of lists into a list of dictionaries
+# =====================================================
+
+d1 = {'Science': [88, 89, 62, 95], 'Language': [77, 78, 84, 80]}
+keys = list(d1.keys())
+rows = max(len(v) for v in d1.values())
+out = []
+for i in range(rows):
+    row = {}
+    for k in keys:
+        row[k] = d1[k][i]
+    out.append(row)
+print(out)
+
+# Explanation:
+# 1) Assume all lists are equal length.
+# 2) Build dict per index grabbing each key's i-th value.
+# 3) Collect in list.
+
+
+
+# =====================================================
+# QUESTION 48: Remove a specified dictionary from a given list
+# =====================================================
+
+lst = [{'id': '#FF0000', 'color': 'Red'},
+       {'id': '#800000', 'color': 'Maroon'},
+       {'id': '#FFFF00', 'color': 'Yellow'},
+       {'id': '#808000', 'color': 'Olive'}]
+
+target = input("Enter id to remove (e.g., #FF0000): ").strip()
+out = [d for d in lst if d.get('id') != target]
+print(out)
+
+# Explanation:
+# 1) Filter out dict where id == target.
+# 2) Keep all others.
+# 3) Print filtered list.
+
+
+
+# =====================================================
+# QUESTION 49: Convert string values of dicts to int/float
+# =====================================================
+
+n = int(input("How many dicts? ").strip())
+lst = []
+for _ in range(n):
+    m = int(input("How many pairs in this dict? ").strip())
+    d = {}
+    for _ in range(m):
+        k = input("key: ").strip()
+        v = input("value (string number): ").strip()
+        if v.replace('.','',1).lstrip('-').isdigit():
+            if '.' in v:
+                d[k] = float(v)
+            else:
+                d[k] = int(v)
+        else:
+            d[k] = v
+    lst.append(d)
+print(lst)
+
+# Explanation:
+# 1) Parse numeric-looking strings.
+# 2) Convert to int or float; else keep as string.
+# 3) Print converted list of dicts.
+
+
+
+# =====================================================
+# QUESTION 50: Clear the list values in the given dictionary
+# =====================================================
+
+d1 = {'C1': [10, 20, 30], 'C2': [20, 30, 40], 'C3': [12, 34]}
+for k in d1:
+    d1[k] = []
+print(d1)
+
+# Explanation:
+# 1) Replace each list with [].
+# 2) Print the cleared dictionary.
+# 3) Done.
+
+
+
+# =====================================================
+# QUESTION 51: Update list values in the given dictionary
+# =====================================================
+
+d1 = {'Math': [88, 89, 90], 'Physics': [92, 94, 89], 'Chemistry': [90, 87, 93]}
+# Example update: add +1 to each element of each list (wrap modulo 100 for demo)
+for k in d1:
+    d1[k] = [x+1 for x in d1[k]]
+print(d1)
+
+# Explanation:
+# 1) Traverse each list and update values as desired.
+# 2) Here we add +1 to each mark.
+# 3) Print updated dict.
+
+
+
+# =====================================================
+# QUESTION 52: Extract a list of values from a list of dicts by subject
+# =====================================================
+
+lst = [{'Math': 90, 'Science': 92}, {'Math': 89, 'Science': 94}, {'Math': 92, 'Science': 88}]
+sub = input("Enter subject (Math/Science): ").strip()
+out = [d.get(sub) for d in lst if sub in d]
+print(out)
+
+# Explanation:
+# 1) Iterate each dict and pick value for the subject.
+# 2) Collect values in a list.
+# 3) Print the list.
+
+
+
+# =====================================================
+# QUESTION 53: Find the length of each dictionary value (strings)
+# =====================================================
+
+raw = input("Enter dict (e.g., 1:red,2:green,3:black): ").strip()
+d1 = {}
+for seg in [s for s in raw.split(",") if ":" in s]:
+    k, v = seg.split(":", 1)
+    d1[k.strip()] = v.strip()
+
+lens = {v: len(v) for v in d1.values()}
+print(lens)
+
+# Explanation:
+# 1) For each string value, compute len(value).
+# 2) Build a dict mapping value -> length.
+# 3) Print the lengths dict.
+
+
+
+# =====================================================
+# QUESTION 54: Get the depth of a dictionary
+# =====================================================
+
+d1 = {'a': 1, 'b': {'c': {'d': {'e': 5}}}}
+
+depth = 0
+stack = [(d1, 1)]
+while stack:
+    cur, level = stack.pop()
+    if isinstance(cur, dict):
+        depth = max(depth, level)
+        for v in cur.values():
+            if isinstance(v, dict):
+                stack.append((v, level+1))
+print(depth)
+
+# Explanation:
+# 1) DFS stack over nested dicts.
+# 2) Track max level encountered.
+# 3) Print depth.
+
+
+
+# =====================================================
+# QUESTION 55: Access dictionary keys by index (deterministic order via sorted)
+# =====================================================
+
+d1 = {'physics': 80, 'math': 90, 'chemistry': 86}
+keys_sorted = sorted(d1.keys())
+for i in range(len(keys_sorted)):
+    print(keys_sorted[i])
+
+# Explanation:
+# 1) Dicts are insertion-ordered in modern Python, but we sort to fix order.
+# 2) Access keys by index on the sorted list.
+# 3) Print each key.
+
+
+
+# =====================================================
+# QUESTION 56: Convert a dictionary into a list of lists
+# =====================================================
+
+raw = input("Enter dict (e.g., 1:red,2:green,3:black): ").strip()
+d1 = {}
+for seg in [s for s in raw.split(",") if ":" in s]:
+    k, v = seg.split(":", 1)
+    d1[k.strip()] = v.strip()
+
+out = [[k, v] for k, v in d1.items()]
+print(out)
+
+# Explanation:
+# 1) List of [key, value] for each item.
+# 2) Print the resulting list.
+# 3) Done.
+
+
+
+# =====================================================
+# QUESTION 57: Filter even numbers from dictionary values (lists)
+# =====================================================
+
+d1 = {'V': [1, 4, 6, 10], 'VI': [1, 4, 12], 'VII': [1, 3, 8]}
+d2 = {k: [x for x in v if x % 2 == 0] for k, v in d1.items()}
+print(d2)
+
+# Explanation:
+# 1) For each key, filter even numbers from its list.
+# 2) Use list comprehension for clarity.
+# 3) Print filtered dict.
+
+
+
+# =====================================================
+# QUESTION 58: Get all combinations of key-value pairs (choose any 2 keys)
+# =====================================================
+
+from itertools import combinations
+d1 = {'V': [1, 4, 6, 10], 'VI': [1, 4, 12], 'VII': [1, 3, 8]}
+out = []
+keys = list(d1.keys())
+for a, b in combinations(keys, 2):
+    out.append({a: d1[a], b: d1[b]})
+print(out)
+
+# Explanation:
+# 1) Use itertools.combinations over keys.
+# 2) Build small dicts containing the selected keys.
+# 3) Print list of combinations.
+
+
+
+# =====================================================
+# QUESTION 59: Find N keys with maximum values in a dict
+# =====================================================
+
+raw = input("Enter dict (e.g., a:5,b:14,c:32,d:35,e:24,f:100,g:57,h:8,i:100): ").strip()
+n = int(input("Enter N: ").strip())
+d1 = {}
+for seg in [s for s in raw.split(",") if ":" in s]:
+    k, v = seg.split(":", 1)
+    try:
+        d1[k.strip()] = float(v.strip())
+    except:
+        pass
+top = sorted(d1.items(), key=lambda x: x[1], reverse=True)[:n]
+print([k for k, _ in top])
+
+# Explanation:
+# 1) Parse numeric values.
+# 2) Sort by value desc and take first N.
+# 3) Print list of keys.
+
+
+
+# =====================================================
+# QUESTION 60: Shortest lists' keys in a dictionary of lists
+# =====================================================
+
+d1 = {'V': [10, 12], 'VI': [10], 'VII': [10, 20, 30, 40], 'VIII': [20], 'IX': [10, 30, 50, 70], 'X': [80]}
+minlen = min(len(v) for v in d1.values())
+out = [k for k, v in d1.items() if len(v) == minlen]
+print(out)
+
+# Explanation:
+# 1) Compute min length across values.
+# 2) Collect keys whose list length equals that min.
+# 3) Print keys.
+
+
+
+# =====================================================
+# QUESTION 61: Count the frequency of values in a dictionary
+# =====================================================
+
+from collections import Counter
+d1 = {'V': 10, 'VI': 10, 'VII': 40, 'VIII': 20, 'IX': 70, 'X': 80, 'XI': 40, 'XII': 20}
+c = Counter(d1.values())
+print(c)
+
+# Explanation:
+# 1) Build Counter over dict.values().
+# 2) Print frequencies.
+# 3) Done.
+
+
+
+# =====================================================
+# QUESTION 62: Extract values and create list of lists
+# =====================================================
+
+lst = [
+    {'student_id': 1, 'name': 'Jean Castro', 'class': 'V'},
+    {'student_id': 2, 'name': 'Lula Powell', 'class': 'V'},
+    {'student_id': 3, 'name': 'Brian Howell', 'class': 'VI'},
+    {'student_id': 4, 'name': 'Lynne Foster', 'class': 'VI'},
+    {'student_id': 5, 'name': 'Zachary Simon', 'class': 'VII'}
+]
+# Full rows [id, name, class]
+out1 = [[d['student_id'], d['name'], d['class']] for d in lst]
+# Just [id, name]
+out2 = [[d['student_id'], d['name']] for d in lst]
+# Just [name, class]
+out3 = [[d['name'], d['class']] for d in lst]
+print(out1)
+print(out2)
+print(out3)
+
+# Explanation:
+# 1) Walk list of dicts and select specific keys.
+# 2) Build different list-of-lists views.
+# 3) Print them.
+
+
+
+# =====================================================
+# QUESTION 63: Convert a list of lists to a dictionary
+# =====================================================
+
+lst = [[1, 'Jean Castro', 'V'], [2, 'Lula Powell', 'V'], [3, 'Brian Howell', 'VI'], [4, 'Lynne Foster', 'VI'], [5, 'Zachary Simon', 'VII']]
+d1 = {row[0]: row[1:] for row in lst}
+print(d1)
+
+# Explanation:
+# 1) Treat first element as key; rest as list value.
+# 2) Build dict with dict comprehension.
+# 3) Print it.
+
+
+
+# =====================================================
+# QUESTION 64: Create key-value list pairings in a dictionary
+# =====================================================
+
+d1 = {1: ['Jean Castro'], 2: ['Lula Powell'], 3: ['Brian Howell'], 4: ['Lynne Foster'], 5: ['Zachary Simon']}
+d2 = [{k: v[0] if v else None for k, v in d1.items()}]
+print(d2)
+
+# Explanation:
+# 1) For each key, take first item of the list.
+# 2) Wrap into a single-element list as per sample.
+# 3) Print the list containing one dict.
+
+
+
+# =====================================================
+# QUESTION 65: Total length of all string values
+# =====================================================
+
+d1 = {'#FF0000': 'Red', '#800000': 'Maroon', '#FFFF00': 'Yellow', '#808000': 'Olive'}
+total = sum(len(v) for v in d1.values())
+print(total)
+
+# Explanation:
+# 1) Sum lengths of each string value.
+# 2) Print the total.
+# 3) Done.
+
+
+
+# =====================================================
+# QUESTION 66: Check if a specific key and value exist in a list of dicts
+# =====================================================
+
+lst = [
+    {'student_id': 1, 'name': 'Jean Castro', 'class': 'V'},
+    {'student_id': 2, 'name': 'Lula Powell', 'class': 'V'},
+    {'student_id': 3, 'name': 'Brian Howell', 'class': 'VI'},
+    {'student_id': 4, 'name': 'Lynne Foster', 'class': 'VI'},
+    {'student_id': 5, 'name': 'Zachary Simon', 'class': 'VII'}
+]
+k = input("Enter key: ").strip()
+v = input("Enter value: ").strip()
+print(any((k in d and str(d[k]) == v) for d in lst))
+
+# Explanation:
+# 1) Check each dict for key and exact value match.
+# 2) any(...) returns True if any match.
+# 3) Print True/False.
+
+
+
+# =====================================================
+# QUESTION 67: Invert a dictionary with non-unique hashable values
+# =====================================================
+
+d1 = {'Theodore Hollandl': 7, 'Mae Fleming': 7, 'Ivan Little': 7, 'Ora Mckinney': 8, 'Mathew Gilbert': 8}
+d2 = {}
+for k, v in d1.items():
+    d2.setdefault(v, []).append(k)
+print(d2)
+
+# Explanation:
+# 1) Values repeat, so inverted dict maps value -> list of keys.
+# 2) Use setdefault to append.
+# 3) Print inverted dict.
+
+
+
+# =====================================================
+# QUESTION 68: Combine multiple dicts into list of values for each key
+# =====================================================
+
+dicts = []
+n = int(input("How many dicts? ").strip())
+for _ in range(n):
+    raw = input("Enter dict (e.g., x:100,y:Green): ").strip()
+    d = {}
+    for seg in [s for s in raw.split(",") if ":" in s]:
+        k, v = seg.split(":", 1)
+        k = k.strip()
+        v = v.strip()
+        try:
+            v2 = float(v) if (v.replace('.','',1).lstrip('-').isdigit()) else v
+            dicts.append({k: v2})
+        except:
+            dicts.append({k: v})
+all_keys = set()
+for d in dicts:
+    for k in d:
+        all_keys.add(k)
+result = {}
+for k in all_keys:
+    result[k] = []
+for d in dicts:
+    for k, v in d.items():
+        result[k].append(v)
+print(result)
+
+# Explanation:
+# 1) Read several small dicts.
+# 2) For each key, gather all of its values into a list.
+# 3) Print combined mapping.
+
+
+
+# =====================================================
+# QUESTION 69: Group list elements by a function (floor or len)
+# =====================================================
+
+opt = input("Function (floor/len): ").strip()
+if opt == "floor":
+    import math
+    data = [7, 23, 3.2, 3.3, 8.4]
+    d1 = {}
+    for x in data:
+        k = math.floor(x) if isinstance(x, float) else x
+        d1.setdefault(k, []).append(x)
+    print(d1)
+else:
+    data = ['Red', 'Green', 'Black', 'White', 'Pink']
+    d1 = {}
+    for x in data:
+        k = len(x)
+        d1.setdefault(k, []).append(x)
+    print(d1)
+
+# Explanation:
+# 1) If 'floor', group by math.floor for floats, identity for ints.
+# 2) Else group strings by len(x).
+# 3) Print grouped dict.
+
+
+
+# =====================================================
+# QUESTION 70: Map list values to dict using a function (square)
+# =====================================================
+
+lst = [1, 2, 3, 4]
+d1 = {}
+for x in lst:
+    d1[x] = x*x
+print(d1)
+
+# Explanation:
+# 1) Use the input list as keys.
+# 2) Value is f(x)=x^2 for each x.
+# 3) Print the mapping.
+
+
+
+# =====================================================
+# QUESTION 71: Retrieve nested value by selector list
+# =====================================================
+
+data = {'user': {'name': 'Russell', 'ids': [1, 2, 3]}}
+sel_raw = input("Enter selector path (space-separated, use ints for list index): ").strip().split()
+cur = data
+ok = True
+for s in sel_raw:
+    if isinstance(cur, dict) and s in cur:
+        cur = cur[s]
+    elif isinstance(cur, list):
+        if s.lstrip('-').isdigit():
+            idx = int(s)
+            if -len(cur) <= idx < len(cur):
+                cur = cur[idx]
+            else:
+                ok = False
+                break
+        else:
+            ok = False
+            break
+    else:
+        ok = False
+        break
+if ok:
+    print(cur)
+else:
+    print("Invalid path")
+
+# Explanation:
+# 1) Walk the structure by each selector step.
+# 2) Dict step: use key; list step: use integer index.
+# 3) Print the final value or 'Invalid path'.
+
+
+
+# =====================================================
+# QUESTION 72: Invert a dictionary with unique values
+# =====================================================
+
+d1 = {'Theodore': 10, 'Mathew': 11, 'Roxanne': 9}
+d2 = {v: k for k, v in d1.items()}
+print(d2)
+
+# Explanation:
+# 1) Values are unique so reverse mapping is safe.
+# 2) Build v->k dict and print it.
+# 3) Done.
+
+
+
+# =====================================================
+# QUESTION 73: Convert list of dicts to list of values for a given key
+# =====================================================
+
+lst = [{'name': 'Theodore', 'age': 18}, {'name': 'Mathew', 'age': 22}, {'name': 'Roxanne', 'age': 20}, {'name': 'David', 'age': 18}]
+key = input("Enter key to extract (e.g., age): ").strip()
+out = [d[key] for d in lst if key in d]
+print(out)
+
+# Explanation:
+# 1) Read the target key.
+# 2) Collect its values across the list of dicts.
+# 3) Print the list.
+
+
+
+# =====================================================
+# QUESTION 74: Create dict with same keys by running a function on values
+# =====================================================
+
+d1 = {'Theodore': {'user': 'Theodore', 'age': 45}, 'Roxanne': {'user': 'Roxanne', 'age': 15}, 'Mathew': {'user': 'Mathew', 'age': 21}}
+d2 = {k: v['age'] for k, v in d1.items()}
+print(d2)
+
+# Explanation:
+# 1) For each key, compute a derived value (age).
+# 2) Keep same keys; new dict stores ages.
+# 3) Print result.
+
+
+
+# =====================================================
+# QUESTION 75: Find all keys with a specified value
+# =====================================================
+
+d1 = {'Theodore': 19, 'Roxanne': 20, 'Mathew': 21, 'Betty': 20}
+val = int(input("Enter value to match: ").strip())
+out = [k for k, v in d1.items() if v == val]
+print(out)
+
+# Explanation:
+# 1) Loop items and test v == requested value.
+# 2) Collect matching keys in a list.
+# 3) Print the list.
+
+
+
+# =====================================================
+# QUESTION 76: Combine two lists into a dictionary (keys must be unique)
+# =====================================================
+
+keys = input("Enter keys (comma-separated): ").strip().split(",")
+vals = input("Enter values (comma-separated): ").strip().split(",")
+keys = [k.strip() for k in keys if k.strip() != ""]
+vals = [v.strip() for v in vals if v.strip() != ""]
+d1 = {}
+for i in range(min(len(keys), len(vals))):
+    if keys[i] not in d1:
+        d1[keys[i]] = vals[i]
+print(d1)
+
+# Explanation:
+# 1) Map keys[i] -> vals[i] until one list ends.
+# 2) Ignore duplicate keys beyond the first.
+# 3) Print the dict.
+
+
+
+# =====================================================
+# QUESTION 77: Convert a dictionary to a list of tuples
+# =====================================================
+
+d1 = {'Red': 1, 'Green': 3, 'White': 5, 'Black': 2, 'Pink': 4}
+out = list(d1.items())
+print(out)
+
+# Explanation:
+# 1) dict.items() returns (key, value) tuples.
+# 2) Convert to list and print.
+# 3) Done.
+
+
+
+# =====================================================
+# QUESTION 78: Create a flat list of all keys in a flat dictionary
+# =====================================================
+
+d1 = {'Theodore': 19, 'Roxanne': 20, 'Mathew': 21, 'Betty': 20}
+keys = list(d1.keys())
+print(keys)
+
+# Explanation:
+# 1) keys() view -> convert to list.
+# 2) Print the flat list.
+# 3) Done.
+
+
+
+# =====================================================
+# QUESTION 79: Create a flat list of all values in a flat dictionary
+# =====================================================
+
+d1 = {'Theodore': 19, 'Roxanne': 20, 'Mathew': 21, 'Betty': 20}
+vals = list(d1.values())
+print(vals)
+
+# Explanation:
+# 1) values() view -> convert to list.
+# 2) Print the values as a flat list.
+# 3) Done.
+
+
+
+# =====================================================
+# QUESTION 80: Find the key of the maximum and minimum value
+# =====================================================
+
+d1 = {'Theodore': 19, 'Roxanne': 22, 'Mathew': 21, 'Betty': 20}
+max_key = max(d1, key=d1.get)
+min_key = min(d1, key=d1.get)
+print((max_key, min_key))
+
+# Explanation:
+# 1) max(dict, key=dict.get) gives key with highest value.
+# 2) min(dict, key=dict.get) gives key with lowest value.
+# 3) Print the (max_key, min_key) tuple.
+
+
+
