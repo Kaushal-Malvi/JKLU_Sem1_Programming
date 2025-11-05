@@ -1,0 +1,499 @@
+# =====================================================
+# QUESTION 1: Create a set from user input
+# =====================================================
+
+raw = input("Enter elements separated by commas: ")
+parts = raw.split(",")
+set1 = set()
+
+for item in parts:
+    item = item.strip()
+    if item != "":
+        set1.add(item)
+
+print(set1)
+
+# Explanation:
+# 1) Take a comma-separated string from the user.
+# 2) Split it into parts and trim spaces.
+# 3) Ignore empty items and add each to a set (removes duplicates).
+# 4) Print the final set.
+
+
+
+# =====================================================
+# QUESTION 2: Iterate over a set
+# =====================================================
+
+raw = input("Enter elements separated by commas: ")
+parts = raw.split(",")
+set1 = set()
+
+for item in parts:
+    item = item.strip()
+    if item != "":
+        set1.add(item)
+
+for value in set1:
+    print(value)
+
+# Explanation:
+# 1) Build a set just like in Q1.
+# 2) Loop through the set and print each unique element.
+# 3) Order is not guaranteed for sets.
+
+
+
+# =====================================================
+# QUESTION 3: Add member(s) to a set
+# =====================================================
+
+raw = input("Enter base set (comma-separated): ")
+parts = raw.split(",")
+set1 = set()
+
+for item in parts:
+    item = item.strip()
+    if item != "":
+        set1.add(item)
+
+mode = input("Add a single element or multiple? (single/multi): ").strip().lower()
+if mode == "single":
+    x = input("Enter one element to add: ").strip()
+    if x != "":
+        set1.add(x)
+else:
+    add_raw = input("Enter elements to add (comma-separated): ")
+    add_parts = add_raw.split(",")
+    for a in add_parts:
+        a = a.strip()
+        if a != "":
+            set1.add(a)
+
+print(set1)
+
+# Explanation:
+# 1) Create a starting set from input.
+# 2) For one value, use set.add(x). For many, read and add each item.
+# 3) Print the updated set.
+
+
+
+# =====================================================
+# QUESTION 4: Remove item(s) from a set
+# =====================================================
+
+raw = input("Enter base set (comma-separated): ")
+parts = raw.split(",")
+set1 = set()
+
+for item in parts:
+    item = item.strip()
+    if item != "":
+        set1.add(item)
+
+rem_raw = input("Enter elements to remove (comma-separated): ")
+rem_parts = rem_raw.split(",")
+for r in rem_parts:
+    r = r.strip()
+    if r != "":
+        set1.discard(r)  # discard won't raise an error if r is absent
+
+print(set1)
+
+# Explanation:
+# 1) Build the base set and read items to remove.
+# 2) Use discard() to avoid errors for missing elements.
+# 3) Print the set after removals.
+
+
+
+# =====================================================
+# QUESTION 5: Remove an item from a set if it is present
+# =====================================================
+
+raw = input("Enter base set (comma-separated): ")
+parts = raw.split(",")
+set1 = set()
+
+for item in parts:
+    item = item.strip()
+    if item != "":
+        set1.add(item)
+
+target = input("Enter one element to remove if present: ").strip()
+if target in set1:
+    set1.remove(target)
+print(set1)
+
+# Explanation:
+# 1) Create the set and read a single target value.
+# 2) Check membership with 'in' before removing.
+# 3) Print the result.
+
+
+
+# =====================================================
+# QUESTION 6: Create the intersection of two sets
+# =====================================================
+
+raw1 = input("Enter Set A (comma-separated): ")
+raw2 = input("Enter Set B (comma-separated): ")
+
+parts1 = raw1.split(",")
+set1 = set()
+for x in parts1:
+    x = x.strip()
+    if x != "":
+        set1.add(x)
+
+parts2 = raw2.split(",")
+set2 = set()
+for y in parts2:
+    y = y.strip()
+    if y != "":
+        set2.add(y)
+
+print(set1.intersection(set2))
+
+# Explanation:
+# 1) Read two sets A and B.
+# 2) intersection() keeps elements common to both sets.
+# 3) Print the intersection.
+
+
+
+# =====================================================
+# QUESTION 7: Create the union of two sets
+# =====================================================
+
+raw1 = input("Enter Set A (comma-separated): ")
+raw2 = input("Enter Set B (comma-separated): ")
+
+parts1 = raw1.split(",")
+set1 = set()
+for x in parts1:
+    x = x.strip()
+    if x != "":
+        set1.add(x)
+
+parts2 = raw2.split(",")
+set2 = set()
+for y in parts2:
+    y = y.strip()
+    if y != "":
+        set2.add(y)
+
+print(set1.union(set2))
+
+# Explanation:
+# 1) Build sets A and B.
+# 2) union() combines unique elements from both.
+# 3) Print the union.
+
+
+
+# =====================================================
+# QUESTION 8: Create the difference of two sets (set1 - set2)
+# =====================================================
+
+raw1 = input("Enter Set A (comma-separated): ")
+raw2 = input("Enter Set B (comma-separated): ")
+
+parts1 = raw1.split(",")
+set1 = set()
+for x in parts1:
+    x = x.strip()
+    if x != "":
+        set1.add(x)
+
+parts2 = raw2.split(",")
+set2 = set()
+for y in parts2:
+    y = y.strip()
+    if y != "":
+        set2.add(y)
+
+print(set1.difference(set2))
+
+# Explanation:
+# 1) Read sets A and B.
+# 2) difference() returns items that are in A but not in B.
+# 3) Print A - B.
+
+
+
+# =====================================================
+# QUESTION 9: Create the symmetric difference of two sets
+# =====================================================
+
+raw1 = input("Enter Set A (comma-separated): ")
+raw2 = input("Enter Set B (comma-separated): ")
+
+parts1 = raw1.split(",")
+set1 = set()
+for x in parts1:
+    x = x.strip()
+    if x != "":
+        set1.add(x)
+
+parts2 = raw2.split(",")
+set2 = set()
+for y in parts2:
+    y = y.strip()
+    if y != "":
+        set2.add(y)
+
+print(set1.symmetric_difference(set2))
+
+# Explanation:
+# 1) Read two sets A and B.
+# 2) symmetric_difference() keeps elements that are in exactly one of the sets.
+# 3) Print the result.
+
+
+
+# =====================================================
+# QUESTION 10: Check if one set is a subset of another
+# =====================================================
+
+raw_s = input("Enter potential subset S (comma-separated): ")
+raw_t = input("Enter potential superset T (comma-separated): ")
+
+parts_s = raw_s.split(",")
+S = set()
+for s in parts_s:
+    s = s.strip()
+    if s != "":
+        S.add(s)
+
+parts_t = raw_t.split(",")
+T = set()
+for t in parts_t:
+    t = t.strip()
+    if t != "":
+        T.add(t)
+
+print(S.issubset(T))
+
+# Explanation:
+# 1) Build S and T from input.
+# 2) issubset() returns True if every element of S is in T.
+# 3) Print True/False.
+
+
+
+# =====================================================
+# QUESTION 11: Remove the intersection of set2 from set1
+# =====================================================
+
+raw1 = input("Enter Set A (comma-separated): ")
+raw2 = input("Enter Set B (comma-separated): ")
+
+parts1 = raw1.split(",")
+set1 = set()
+for x in parts1:
+    x = x.strip()
+    if x != "":
+        set1.add(x)
+
+parts2 = raw2.split(",")
+set2 = set()
+for y in parts2:
+    y = y.strip()
+    if y != "":
+        set2.add(y)
+
+set1.difference_update(set2)
+print(set1)
+
+# Explanation:
+# 1) Read A and B.
+# 2) difference_update(B) removes any items from A that also occur in B.
+# 3) Print the modified A.
+
+
+
+# =====================================================
+# QUESTION 12: Remove all elements from a set
+# =====================================================
+
+raw = input("Enter a set (comma-separated) to clear: ")
+parts = raw.split(",")
+set1 = set()
+
+for item in parts:
+    item = item.strip()
+    if item != "":
+        set1.add(item)
+
+set1.clear()
+print(set1)
+
+# Explanation:
+# 1) Build a set from input.
+# 2) clear() removes all elements from the set.
+# 3) Print the empty set (shown as set()).
+
+
+
+# =====================================================
+# QUESTION 13: Find elements in set1 that are not in set2
+# =====================================================
+
+raw1 = input("Enter Set A (comma-separated): ")
+raw2 = input("Enter Set B (comma-separated): ")
+
+parts1 = raw1.split(",")
+set1 = set()
+for x in parts1:
+    x = x.strip()
+    if x != "":
+        set1.add(x)
+
+parts2 = raw2.split(",")
+set2 = set()
+for y in parts2:
+    y = y.strip()
+    if y != "":
+        set2.add(y)
+
+print(set1 - set2)
+
+# Explanation:
+# 1) Build A and B.
+# 2) A - B returns elements that are only in A.
+# 3) Print the result.
+
+
+
+# =====================================================
+# QUESTION 14: Find the maximum and minimum value in a numeric set
+# =====================================================
+
+raw = input("Enter integers separated by commas: ")
+parts = raw.split(",")
+nums = set()
+
+for p in parts:
+    p = p.strip()
+    if p != "":
+        nums.add(int(p))
+
+if len(nums) > 0:
+    print(max(nums), min(nums))
+else:
+    print("Set is empty")
+
+# Explanation:
+# 1) Parse integers into a set (duplicates removed).
+# 2) If not empty, print max and min.
+# 3) If empty, print a helpful message to avoid errors.
+
+
+
+# =====================================================
+# QUESTION 15: Find the length (number of elements) of a set
+# =====================================================
+
+raw = input("Enter elements separated by commas: ")
+parts = raw.split(",")
+set1 = set()
+
+for item in parts:
+    item = item.strip()
+    if item != "":
+        set1.add(item)
+
+print(len(set1))
+
+# Explanation:
+# 1) Build a set from user input.
+# 2) len(set) counts how many unique elements are in the set.
+# 3) Print that count.
+
+
+
+# =====================================================
+# QUESTION 16: Check if a given value is present in a set
+# =====================================================
+
+raw = input("Enter a set (comma-separated): ")
+parts = raw.split(",")
+set1 = set()
+
+for item in parts:
+    item = item.strip()
+    if item != "":
+        set1.add(item)
+
+target = input("Enter a value to search for: ").strip()
+print(target in set1)
+
+# Explanation:
+# 1) Create the set and read a target value.
+# 2) Use the 'in' operator to test membership.
+# 3) Print True/False.
+
+
+
+# =====================================================
+# QUESTION 17: Check if two sets have no elements in common
+# =====================================================
+
+raw1 = input("Enter Set A (comma-separated): ")
+raw2 = input("Enter Set B (comma-separated): ")
+
+parts1 = raw1.split(",")
+set1 = set()
+for x in parts1:
+    x = x.strip()
+    if x != "":
+        set1.add(x)
+
+parts2 = raw2.split(",")
+set2 = set()
+for y in parts2:
+    y = y.strip()
+    if y != "":
+        set2.add(y)
+
+print(set1.isdisjoint(set2))
+
+# Explanation:
+# 1) Build A and B.
+# 2) isdisjoint() returns True if A ∩ B is empty.
+# 3) Print the boolean result.
+
+
+
+# =====================================================
+# QUESTION 18: Check if a set is a superset of itself and another set
+# =====================================================
+
+raw1 = input("Enter Set A (comma-separated): ")
+raw2 = input("Enter Set B (comma-separated): ")
+
+parts1 = raw1.split(",")
+set1 = set()
+for x in parts1:
+    x = x.strip()
+    if x != "":
+        set1.add(x)
+
+parts2 = raw2.split(",")
+set2 = set()
+for y in parts2:
+    y = y.strip()
+    if y != "":
+        set2.add(y)
+
+is_superset_self = set1.issuperset(set1)
+is_superset_b = set1.issuperset(set2)
+print(is_superset_self, is_superset_b)
+
+# Explanation:
+# 1) Read A and B.
+# 2) A.issuperset(A) is always True by definition.
+# 3) A.issuperset(B) checks whether every element of B is inside A.
+# 4) Print two booleans: (A ⊇ A, A ⊇ B).
