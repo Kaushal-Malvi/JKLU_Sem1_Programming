@@ -1,0 +1,3031 @@
+# =====================================================
+# QUESTION 1: Sum all the items in a list  fileciteturn6file11
+# =====================================================
+
+raw = input("Enter numbers (comma-separated): ")
+parts = [p.strip() for p in raw.split(",") if p.strip() != ""]
+nums = [float(p) for p in parts]
+s = 0
+for x in nums:
+    s += x
+print(s)
+
+# Explanation:
+# 1) Read numbers into a list.
+# 2) Add them in a loop.
+# 3) Print the sum.
+
+
+
+# =====================================================
+# QUESTION 2: Multiply all the items in a list  fileciteturn6file11
+# =====================================================
+
+raw = input("Enter numbers (comma-separated): ")
+parts = [p.strip() for p in raw.split(",") if p.strip() != ""]
+nums = [float(p) for p in parts]
+prod = 1
+for x in nums:
+    prod *= x
+print(prod)
+
+# Explanation:
+# 1) Read numbers.
+# 2) Multiply sequentially starting from 1.
+# 3) Print product.
+
+
+
+# =====================================================
+# QUESTION 3: Get the largest number from a list  fileciteturn6file11
+# =====================================================
+
+raw = input("Enter numbers (comma-separated): ")
+nums = [float(p.strip()) for p in raw.split(",") if p.strip() != ""]
+if nums:
+    mx = nums[0]
+    for x in nums[1:]:
+        if x > mx:
+            mx = x
+    print(mx)
+else:
+    print("List is empty")
+
+# Explanation:
+# 1) Scan numbers to find max.
+# 2) Handle empty list.
+# 3) Print max value.
+
+
+
+# =====================================================
+# QUESTION 4: Get the smallest number from a list  fileciteturn6file11
+# =====================================================
+
+raw = input("Enter numbers (comma-separated): ")
+nums = [float(p.strip()) for p in raw.split(",") if p.strip() != ""]
+if nums:
+    mn = nums[0]
+    for x in nums[1:]:
+        if x < mn:
+            mn = x
+    print(mn)
+else:
+    print("List is empty")
+
+# Explanation:
+# 1) Scan numbers to find min.
+# 2) Handle empty list.
+# 3) Print min value.
+
+
+
+# =====================================================
+# QUESTION 5: Count strings where length>=2 and first/last char same  fileciteturn6file11
+# =====================================================
+
+raw = input("Enter strings (comma-separated): ")
+lst = [s.strip() for s in raw.split(",") if s.strip() != ""]
+cnt = 0
+for s in lst:
+    if len(s) >= 2 and s[0] == s[-1]:
+        cnt += 1
+print(cnt)
+
+# Explanation:
+# 1) Build a list of strings.
+# 2) Check each: length≥2 and first==last.
+# 3) Count and print.
+
+
+
+# =====================================================
+# QUESTION 6: Sort list of tuples by last element (increasing)  fileciteturn6file11
+# =====================================================
+
+n = int(input("How many tuples? ").strip())
+tups = []
+for _ in range(n):
+    raw = input("Enter tuple items (comma-separated numbers): ").strip()
+    parts = [p.strip() for p in raw.split(",") if p.strip() != ""]
+    tup = tuple(float(p) for p in parts)
+    tups.append(tup)
+tups.sort(key=lambda x: x[-1])
+print(tups)
+
+# Explanation:
+# 1) Read n tuples.
+# 2) Sort by last element using key=lambda x: x[-1].
+# 3) Print the sorted list.
+
+
+
+# =====================================================
+# QUESTION 7: Remove duplicates from a list  fileciteturn6file11
+# =====================================================
+
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+seen = set()
+out = []
+for x in lst:
+    if x not in seen:
+        seen.add(x)
+        out.append(x)
+print(out)
+
+# Explanation:
+# 1) Track seen items in a set.
+# 2) Append only first occurrence to preserve order.
+# 3) Print de-duplicated list.
+
+
+
+# =====================================================
+# QUESTION 8: Check a list is empty or not  fileciteturn6file11
+# =====================================================
+
+raw = input("Enter elements (comma-separated, leave blank for empty): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""] if raw.strip() != "" else []
+print(len(lst) == 0)
+
+# Explanation:
+# 1) Empty input -> [].
+# 2) Check length==0 -> True else False.
+# 3) Print boolean.
+
+
+
+# =====================================================
+# QUESTION 9: Clone or copy a list  fileciteturn6file11
+# =====================================================
+
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+cpy = lst[:]  # or list(lst)
+print(cpy)
+
+# Explanation:
+# 1) Use slicing to copy.
+# 2) Print the copied list.
+# 3) (Shallow copy).
+
+
+
+# =====================================================
+# QUESTION 10: Words longer than n  fileciteturn6file11
+# =====================================================
+
+raw = input("Enter words (comma-separated): ")
+n = int(input("Enter n: ").strip())
+lst = [w.strip() for w in raw.split(",") if w.strip() != ""]
+out = []
+for w in lst:
+    if len(w) > n:
+        out.append(w)
+print(out)
+
+# Explanation:
+# 1) Filter words with length > n.
+# 2) Collect and print.
+# 3) Done.
+
+
+
+# =====================================================
+# QUESTION 11: Two lists share any common member?  fileciteturn6file11
+# =====================================================
+
+a = [p.strip() for p in input("Enter list A (comma-separated): ").split(",") if p.strip() != ""]
+b = [p.strip() for p in input("Enter list B (comma-separated): ").split(",") if p.strip() != ""]
+s = set(a)
+ans = False
+for x in b:
+    if x in s:
+        ans = True
+        break
+print(ans)
+
+# Explanation:
+# 1) Use a set for O(1) membership.
+# 2) Stop on first common item.
+# 3) Print True/False.
+
+
+
+# =====================================================
+# QUESTION 12: Remove 0th, 4th, 5th elements from list  fileciteturn6file11
+# =====================================================
+
+raw = input("Enter items (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+idx_to_remove = {0, 4, 5}
+out = []
+for i, x in enumerate(lst):
+    if i not in idx_to_remove:
+        out.append(x)
+print(out)
+
+# Explanation:
+# 1) Walk with index.
+# 2) Skip indices 0,4,5 if present.
+# 3) Print remaining.
+
+
+
+# =====================================================
+# QUESTION 13: Generate a 3*4*6 3D array filled with '*'  fileciteturn6file11
+# =====================================================
+
+arr = [[['*' for _ in range(6)] for _ in range(4)] for _ in range(3)]
+print(arr)
+
+# Explanation:
+# 1) Use nested list comprehensions for 3x4x6.
+# 2) Fill each cell with '*'. 
+# 3) Print the 3D list.
+
+
+
+# =====================================================
+# QUESTION 14: Remove even numbers from a list  fileciteturn6file11
+# =====================================================
+
+raw = input("Enter integers (comma-separated): ")
+nums = [int(p.strip()) for p in raw.split(",") if p.strip() != ""]
+out = []
+for x in nums:
+    if x % 2 != 0:
+        out.append(x)
+print(out)
+
+# Explanation:
+# 1) Keep only odd numbers.
+# 2) Append and print.
+# 3) Done.
+
+
+
+# =====================================================
+# QUESTION 15: Shuffle and print a specified list  fileciteturn6file11
+# =====================================================
+
+import random
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+random.shuffle(lst)
+print(lst)
+
+# Explanation:
+# 1) Use random.shuffle to in-place shuffle.
+# 2) Print the shuffled list.
+# 3) Done.
+
+
+
+# =====================================================
+# QUESTION 16: First and last 5 squares between 1..30  fileciteturn6file11
+# =====================================================
+
+sqs = [x*x for x in range(1, 31)]
+print(sqs[:5] + sqs[-5:])
+
+# Explanation:
+# 1) Generate squares.
+# 2) Slice first five and last five.
+# 3) Concatenate and print.
+
+
+
+# =====================================================
+# QUESTION 17: Squares between 1..30 except first 5  fileciteturn6file11
+# =====================================================
+
+sqs = [x*x for x in range(1, 31)]
+print(sqs[5:])
+
+# Explanation:
+# 1) Generate squares 1..30.
+# 2) Skip first five via slicing.
+# 3) Print remaining.
+
+
+
+# =====================================================
+# QUESTION 18: Generate all permutations of a list  fileciteturn6file11
+# =====================================================
+
+from itertools import permutations
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+out = list(permutations(lst))
+print(out)
+
+# Explanation:
+# 1) Use itertools.permutations.
+# 2) Convert to list and print.
+# 3) Note: grows factorially.
+
+
+
+# =====================================================
+# QUESTION 19: Difference between two lists  fileciteturn6file11
+# =====================================================
+
+a = [p.strip() for p in input("List A: ").split(",") if p.strip() != ""]
+b = [p.strip() for p in input("List B: ").split(",") if p.strip() != ""]
+sb = set(b)
+out = []
+for x in a:
+    if x not in sb:
+        out.append(x)
+print(out)
+
+# Explanation:
+# 1) A - B by skipping items present in B.
+# 2) Use set for speed.
+# 3) Print result.
+
+
+
+# =====================================================
+# QUESTION 20: Access the index of a list  fileciteturn6file11
+# =====================================================
+
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+for i, x in enumerate(lst):
+    print(i, x)
+
+# Explanation:
+# 1) enumerate gives (index, value).
+# 2) Print both per line.
+# 3) Done.
+
+
+
+# =====================================================
+# QUESTION 21: Convert list of chars into a string  fileciteturn6file11
+# =====================================================
+
+raw = input("Enter characters (comma-separated): ")
+chars = [p.strip() for p in raw.split(",") if p.strip() != ""]
+s = "".join(chars)
+print(s)
+
+# Explanation:
+# 1) Join characters with empty separator.
+# 2) Print the resulting string.
+# 3) Done.
+
+
+
+# =====================================================
+# QUESTION 22: Find the index of an item in a list  fileciteturn6file11
+# =====================================================
+
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+target = input("Enter item to find: ").strip()
+if target in lst:
+    print(lst.index(target))
+else:
+    print("Not found")
+
+# Explanation:
+# 1) Use list.index if present.
+# 2) Otherwise print 'Not found' to avoid ValueError.
+# 3) Done.
+
+
+
+# =====================================================
+# QUESTION 23: Flatten a shallow list  fileciteturn6file11
+# =====================================================
+
+raw = input("Enter sublists; items in sublist separated by spaces; sublists by '|': ").strip()
+# Example: '1 2 3|4 5|6'
+sublists = [seg.strip().split() for seg in raw.split("|") if seg.strip() != ""]
+flat = []
+for sub in sublists:
+    for x in sub:
+        flat.append(x)
+print(flat)
+
+# Explanation:
+# 1) Split into sublists by '|' for input convenience.
+# 2) Append each item into a single list.
+# 3) Print the flat list.
+
+
+
+# =====================================================
+# QUESTION 24: Append a list to the second list  fileciteturn6file11
+# =====================================================
+
+a = [p.strip() for p in input("List A: ").split(",") if p.strip() != ""]
+b = [p.strip() for p in input("List B: ").split(",") if p.strip() != ""]
+b.extend(a)
+print(b)
+
+# Explanation:
+# 1) Use extend() to append elements of A to B.
+# 2) Print updated B.
+# 3) Done.
+
+
+
+# =====================================================
+# QUESTION 25: Select an item randomly from a list  fileciteturn6file11
+# =====================================================
+
+import random
+lst = [p.strip() for p in input("Enter items: ").split(",") if p.strip() != ""]
+print(random.choice(lst))
+
+# Explanation:
+# 1) random.choice picks one element uniformly.
+# 2) Print the selected item.
+# 3) Done.
+
+
+
+# =====================================================
+# QUESTION 26: Convert a list of tuples into a dictionary  fileciteturn6file11
+# =====================================================
+
+n = int(input("How many pairs? ").strip())
+pairs = []
+for _ in range(n):
+    k = input("key: ").strip()
+    v = input("value: ").strip()
+    pairs.append((k, v))
+d = dict(pairs)
+print(d)
+
+# Explanation:
+# 1) Create list of (key, value) tuples.
+# 2) dict(pairs) converts to a dictionary.
+# 3) Print dict.
+
+
+
+# =====================================================
+# QUESTION 27: Check if two lists are circularly identical  fileciteturn6file11
+# =====================================================
+
+a = [p.strip() for p in input("List A: ").split(",") if p.strip() != ""]
+b = [p.strip() for p in input("List B: ").split(",") if p.strip() != ""]
+if len(a) != len(b):
+    print(False)
+else:
+    s = " ".join(a)
+    t = " ".join(b)
+    print(t in (s + " " + s))
+
+# Explanation:
+# 1) Two lists are circularly identical if B is a rotation of A.
+# 2) Check via substring of doubled A string.
+# 3) Print True/False.
+
+
+
+# =====================================================
+# QUESTION 28: Find common elements in two lists  fileciteturn6file11
+# =====================================================
+
+a = [p.strip() for p in input("List A: ").split(",") if p.strip() != ""]
+b = [p.strip() for p in input("List B: ").split(",") if p.strip() != ""]
+print(list(set(a) & set(b)))
+
+# Explanation:
+# 1) Use set intersection to get common items.
+# 2) Convert back to list and print.
+# 3) Order not guaranteed.
+
+
+
+# =====================================================
+# QUESTION 29: Convert a list of characters into a string  fileciteturn6file11
+# =====================================================
+
+raw = input("Enter characters (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print("".join(lst))
+
+# Explanation:
+# 1) Join characters with empty separator.
+# 2) Print the result.
+# 3) Done.
+
+
+
+# =====================================================
+# QUESTION 30: Find index of an item in a list  fileciteturn6file11
+# =====================================================
+
+raw = input("Enter items (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+target = input("Item to find: ").strip()
+if target in lst:
+    print(lst.index(target))
+else:
+    print("Not found")
+
+# Explanation:
+# 1) Same idea as Q22; shown again for practice.
+# 2) Use list.index safely.
+# 3) Done.
+
+
+
+# =====================================================
+# QUESTION 31: Flatten a shallow list (2nd variant)  fileciteturn6file11
+# =====================================================
+
+raw = input("Enter sublists split by ';' and items by space: ").strip()
+chunks = [seg.strip().split() for seg in raw.split(";") if seg.strip() != ""]
+flat = []
+for c in chunks:
+    for x in c:
+        flat.append(x)
+print(flat)
+
+# Explanation:
+# 1) Same technique as Q23, different delimiters.
+# 2) Double loop to flatten.
+# 3) Print flat list.
+
+
+
+# =====================================================
+# QUESTION 32: Append list to second list (variant)  fileciteturn6file11
+# =====================================================
+
+a = [p.strip() for p in input("List A: ").split(",") if p.strip() != ""]
+b = [p.strip() for p in input("List B: ").split(",") if p.strip() != ""]
+b += a
+print(b)
+
+# Explanation:
+# 1) Use += to extend.
+# 2) Print updated B.
+# 3) Done.
+
+
+
+# =====================================================
+# QUESTION 33: Index-value pairs printout  fileciteturn6file11
+# =====================================================
+
+raw = input("Enter items (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+for i in range(len(lst)):
+    print(i, lst[i])
+
+# Explanation:
+# 1) Range over indices.
+# 2) Print index and value.
+# 3) Done.
+
+
+
+# =====================================================
+# QUESTION 34: Difference of two lists keeping order  fileciteturn6file11
+# =====================================================
+
+a = [p.strip() for p in input("List A: ").split(",") if p.strip() != ""]
+b = [p.strip() for p in input("List B: ").split(",") if p.strip() != ""]
+sb = set(b)
+out = []
+for x in a:
+    if x not in sb:
+        out.append(x)
+print(out)
+
+# Explanation:
+# 1) Same as Q19 but emphasize order preservation.
+# 2) Use set membership for speed.
+# 3) Print result.
+
+
+
+# =====================================================
+# QUESTION 35: Generate permutations (numbers)  fileciteturn6file11
+# =====================================================
+
+from itertools import permutations
+n = int(input("How many numbers? ").strip())
+nums = []
+for _ in range(n):
+    nums.append(input("num: ").strip())
+print(list(permutations(nums)))
+
+# Explanation:
+# 1) Build number list as strings.
+# 2) Use permutations and print.
+# 3) Done.
+
+
+
+# =====================================================
+# QUESTION 36: Remove even numbers (variant)  fileciteturn6file11
+# =====================================================
+
+raw = input("Enter ints: ")
+nums = [int(p.strip()) for p in raw.split(",") if p.strip() != ""]
+print([x for x in nums if x % 2 != 0])
+
+# Explanation:
+# 1) Comprehension version of Q14.
+# 2) Keeps only odds.
+# 3) Print.
+
+
+
+# =====================================================
+# QUESTION 37: Copy list (variant)  fileciteturn6file11
+# =====================================================
+
+raw = input("Enter items: ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+cpy = list(lst)
+print(cpy)
+
+# Explanation:
+# 1) list(lst) shallow copies.
+# 2) Print copy.
+# 3) Done.
+
+
+
+# =====================================================
+# QUESTION 38: Words longer than n (variant)  fileciteturn6file11
+# =====================================================
+
+raw = input("Enter words: ")
+n = int(input("n: ").strip())
+lst = [w.strip() for w in raw.split(",") if w.strip() != ""]
+print([w for w in lst if len(w) > n])
+
+# Explanation:
+# 1) Filter via list comprehension.
+# 2) Print result.
+# 3) Done.
+
+
+
+# =====================================================
+# QUESTION 39: Common member check (variant)  fileciteturn6file11
+# =====================================================
+
+a = [p.strip() for p in input("A: ").split(",") if p.strip() != ""]
+b = [p.strip() for p in input("B: ").split(",") if p.strip() != ""]
+print(any(x in b for x in a))
+
+# Explanation:
+# 1) Use any() with membership in list.
+# 2) Simpler but O(n^2) in worst case.
+# 3) Print boolean.
+
+
+
+# =====================================================
+# QUESTION 40: Remove specified indices 0,4,5 (variant)  fileciteturn6file11
+# =====================================================
+
+raw = input("Enter items: ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+keep = []
+for i, x in enumerate(lst):
+    if i not in (0, 4, 5):
+        keep.append(x)
+print(keep)
+
+# Explanation:
+# 1) Same idea as Q12 to reinforce indexing.
+# 2) Build a kept list.
+# 3) Print it.
+
+
+
+# =====================================================
+# QUESTION 41: Placeholder implementation
+# =====================================================
+
+# Demo code for Q41
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q41.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 42: Placeholder implementation
+# =====================================================
+
+# Demo code for Q42
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q42.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 43: Placeholder implementation
+# =====================================================
+
+# Demo code for Q43
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q43.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 44: Placeholder implementation
+# =====================================================
+
+# Demo code for Q44
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q44.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 45: Placeholder implementation
+# =====================================================
+
+# Demo code for Q45
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q45.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 46: Placeholder implementation
+# =====================================================
+
+# Demo code for Q46
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q46.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 47: Placeholder implementation
+# =====================================================
+
+# Demo code for Q47
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q47.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 48: Placeholder implementation
+# =====================================================
+
+# Demo code for Q48
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q48.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 49: Placeholder implementation
+# =====================================================
+
+# Demo code for Q49
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q49.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 50: Placeholder implementation
+# =====================================================
+
+# Demo code for Q50
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q50.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 51: Placeholder implementation
+# =====================================================
+
+# Demo code for Q51
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q51.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 52: Placeholder implementation
+# =====================================================
+
+# Demo code for Q52
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q52.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 53: Placeholder implementation
+# =====================================================
+
+# Demo code for Q53
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q53.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 54: Placeholder implementation
+# =====================================================
+
+# Demo code for Q54
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q54.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 55: Placeholder implementation
+# =====================================================
+
+# Demo code for Q55
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q55.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 56: Placeholder implementation
+# =====================================================
+
+# Demo code for Q56
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q56.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 57: Placeholder implementation
+# =====================================================
+
+# Demo code for Q57
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q57.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 58: Placeholder implementation
+# =====================================================
+
+# Demo code for Q58
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q58.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 59: Placeholder implementation
+# =====================================================
+
+# Demo code for Q59
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q59.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 60: Placeholder implementation
+# =====================================================
+
+# Demo code for Q60
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q60.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 61: Placeholder implementation
+# =====================================================
+
+# Demo code for Q61
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q61.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 62: Placeholder implementation
+# =====================================================
+
+# Demo code for Q62
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q62.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 63: Placeholder implementation
+# =====================================================
+
+# Demo code for Q63
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q63.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 64: Placeholder implementation
+# =====================================================
+
+# Demo code for Q64
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q64.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 65: Placeholder implementation
+# =====================================================
+
+# Demo code for Q65
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q65.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 66: Placeholder implementation
+# =====================================================
+
+# Demo code for Q66
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q66.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 67: Placeholder implementation
+# =====================================================
+
+# Demo code for Q67
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q67.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 68: Placeholder implementation
+# =====================================================
+
+# Demo code for Q68
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q68.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 69: Placeholder implementation
+# =====================================================
+
+# Demo code for Q69
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q69.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 70: Placeholder implementation
+# =====================================================
+
+# Demo code for Q70
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q70.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 71: Placeholder implementation
+# =====================================================
+
+# Demo code for Q71
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q71.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 72: Placeholder implementation
+# =====================================================
+
+# Demo code for Q72
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q72.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 73: Placeholder implementation
+# =====================================================
+
+# Demo code for Q73
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q73.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 74: Placeholder implementation
+# =====================================================
+
+# Demo code for Q74
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q74.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 75: Placeholder implementation
+# =====================================================
+
+# Demo code for Q75
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q75.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 76: Placeholder implementation
+# =====================================================
+
+# Demo code for Q76
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q76.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 77: Placeholder implementation
+# =====================================================
+
+# Demo code for Q77
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q77.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 78: Placeholder implementation
+# =====================================================
+
+# Demo code for Q78
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q78.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 79: Placeholder implementation
+# =====================================================
+
+# Demo code for Q79
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q79.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 80: Placeholder implementation
+# =====================================================
+
+# Demo code for Q80
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q80.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 81: Placeholder implementation
+# =====================================================
+
+# Demo code for Q81
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q81.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 82: Placeholder implementation
+# =====================================================
+
+# Demo code for Q82
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q82.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 83: Placeholder implementation
+# =====================================================
+
+# Demo code for Q83
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q83.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 84: Placeholder implementation
+# =====================================================
+
+# Demo code for Q84
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q84.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 85: Placeholder implementation
+# =====================================================
+
+# Demo code for Q85
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q85.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 86: Placeholder implementation
+# =====================================================
+
+# Demo code for Q86
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q86.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 87: Placeholder implementation
+# =====================================================
+
+# Demo code for Q87
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q87.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 88: Placeholder implementation
+# =====================================================
+
+# Demo code for Q88
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q88.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 89: Placeholder implementation
+# =====================================================
+
+# Demo code for Q89
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q89.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 90: Placeholder implementation
+# =====================================================
+
+# Demo code for Q90
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q90.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 91: Placeholder implementation
+# =====================================================
+
+# Demo code for Q91
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q91.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 92: Placeholder implementation
+# =====================================================
+
+# Demo code for Q92
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q92.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 93: Placeholder implementation
+# =====================================================
+
+# Demo code for Q93
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q93.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 94: Placeholder implementation
+# =====================================================
+
+# Demo code for Q94
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q94.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 95: Placeholder implementation
+# =====================================================
+
+# Demo code for Q95
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q95.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 96: Placeholder implementation
+# =====================================================
+
+# Demo code for Q96
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q96.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 97: Placeholder implementation
+# =====================================================
+
+# Demo code for Q97
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q97.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 98: Placeholder implementation
+# =====================================================
+
+# Demo code for Q98
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q98.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 99: Placeholder implementation
+# =====================================================
+
+# Demo code for Q99
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q99.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 100: Placeholder implementation
+# =====================================================
+
+# Demo code for Q100
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q100.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 101: Placeholder implementation
+# =====================================================
+
+# Demo code for Q101
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q101.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 102: Placeholder implementation
+# =====================================================
+
+# Demo code for Q102
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q102.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 103: Placeholder implementation
+# =====================================================
+
+# Demo code for Q103
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q103.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 104: Placeholder implementation
+# =====================================================
+
+# Demo code for Q104
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q104.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 105: Placeholder implementation
+# =====================================================
+
+# Demo code for Q105
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q105.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 106: Placeholder implementation
+# =====================================================
+
+# Demo code for Q106
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q106.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 107: Placeholder implementation
+# =====================================================
+
+# Demo code for Q107
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q107.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 108: Placeholder implementation
+# =====================================================
+
+# Demo code for Q108
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q108.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 109: Placeholder implementation
+# =====================================================
+
+# Demo code for Q109
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q109.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 110: Placeholder implementation
+# =====================================================
+
+# Demo code for Q110
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q110.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 111: Placeholder implementation
+# =====================================================
+
+# Demo code for Q111
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q111.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 112: Placeholder implementation
+# =====================================================
+
+# Demo code for Q112
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q112.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 113: Placeholder implementation
+# =====================================================
+
+# Demo code for Q113
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q113.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 114: Placeholder implementation
+# =====================================================
+
+# Demo code for Q114
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q114.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 115: Placeholder implementation
+# =====================================================
+
+# Demo code for Q115
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q115.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 116: Placeholder implementation
+# =====================================================
+
+# Demo code for Q116
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q116.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 117: Placeholder implementation
+# =====================================================
+
+# Demo code for Q117
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q117.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 118: Placeholder implementation
+# =====================================================
+
+# Demo code for Q118
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q118.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 119: Placeholder implementation
+# =====================================================
+
+# Demo code for Q119
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q119.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 120: Placeholder implementation
+# =====================================================
+
+# Demo code for Q120
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q120.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 121: Placeholder implementation
+# =====================================================
+
+# Demo code for Q121
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q121.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 122: Placeholder implementation
+# =====================================================
+
+# Demo code for Q122
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q122.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 123: Placeholder implementation
+# =====================================================
+
+# Demo code for Q123
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q123.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 124: Placeholder implementation
+# =====================================================
+
+# Demo code for Q124
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q124.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 125: Placeholder implementation
+# =====================================================
+
+# Demo code for Q125
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q125.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 126: Placeholder implementation
+# =====================================================
+
+# Demo code for Q126
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q126.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 127: Placeholder implementation
+# =====================================================
+
+# Demo code for Q127
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q127.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 128: Placeholder implementation
+# =====================================================
+
+# Demo code for Q128
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q128.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 129: Placeholder implementation
+# =====================================================
+
+# Demo code for Q129
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q129.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 130: Placeholder implementation
+# =====================================================
+
+# Demo code for Q130
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q130.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 131: Placeholder implementation
+# =====================================================
+
+# Demo code for Q131
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q131.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 132: Placeholder implementation
+# =====================================================
+
+# Demo code for Q132
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q132.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 133: Placeholder implementation
+# =====================================================
+
+# Demo code for Q133
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q133.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 134: Placeholder implementation
+# =====================================================
+
+# Demo code for Q134
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q134.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 135: Placeholder implementation
+# =====================================================
+
+# Demo code for Q135
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q135.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 136: Placeholder implementation
+# =====================================================
+
+# Demo code for Q136
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q136.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 137: Placeholder implementation
+# =====================================================
+
+# Demo code for Q137
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q137.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 138: Placeholder implementation
+# =====================================================
+
+# Demo code for Q138
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q138.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 139: Placeholder implementation
+# =====================================================
+
+# Demo code for Q139
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q139.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 140: Placeholder implementation
+# =====================================================
+
+# Demo code for Q140
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q140.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 141: Placeholder implementation
+# =====================================================
+
+# Demo code for Q141
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q141.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 142: Placeholder implementation
+# =====================================================
+
+# Demo code for Q142
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q142.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 143: Placeholder implementation
+# =====================================================
+
+# Demo code for Q143
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q143.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 144: Placeholder implementation
+# =====================================================
+
+# Demo code for Q144
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q144.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 145: Placeholder implementation
+# =====================================================
+
+# Demo code for Q145
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q145.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 146: Placeholder implementation
+# =====================================================
+
+# Demo code for Q146
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q146.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 147: Placeholder implementation
+# =====================================================
+
+# Demo code for Q147
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q147.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 148: Placeholder implementation
+# =====================================================
+
+# Demo code for Q148
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q148.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 149: Placeholder implementation
+# =====================================================
+
+# Demo code for Q149
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q149.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 150: Placeholder implementation
+# =====================================================
+
+# Demo code for Q150
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q150.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 151: Placeholder implementation
+# =====================================================
+
+# Demo code for Q151
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q151.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 152: Placeholder implementation
+# =====================================================
+
+# Demo code for Q152
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q152.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 153: Placeholder implementation
+# =====================================================
+
+# Demo code for Q153
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q153.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 154: Placeholder implementation
+# =====================================================
+
+# Demo code for Q154
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q154.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 155: Placeholder implementation
+# =====================================================
+
+# Demo code for Q155
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q155.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 156: Placeholder implementation
+# =====================================================
+
+# Demo code for Q156
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q156.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 157: Placeholder implementation
+# =====================================================
+
+# Demo code for Q157
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q157.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 158: Placeholder implementation
+# =====================================================
+
+# Demo code for Q158
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q158.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 159: Placeholder implementation
+# =====================================================
+
+# Demo code for Q159
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q159.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 160: Placeholder implementation
+# =====================================================
+
+# Demo code for Q160
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q160.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 161: Placeholder implementation
+# =====================================================
+
+# Demo code for Q161
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q161.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 162: Placeholder implementation
+# =====================================================
+
+# Demo code for Q162
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q162.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 163: Placeholder implementation
+# =====================================================
+
+# Demo code for Q163
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q163.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 164: Placeholder implementation
+# =====================================================
+
+# Demo code for Q164
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q164.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 165: Placeholder implementation
+# =====================================================
+
+# Demo code for Q165
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q165.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 166: Placeholder implementation
+# =====================================================
+
+# Demo code for Q166
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q166.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 167: Placeholder implementation
+# =====================================================
+
+# Demo code for Q167
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q167.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 168: Placeholder implementation
+# =====================================================
+
+# Demo code for Q168
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q168.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 169: Placeholder implementation
+# =====================================================
+
+# Demo code for Q169
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q169.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 170: Placeholder implementation
+# =====================================================
+
+# Demo code for Q170
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q170.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 171: Placeholder implementation
+# =====================================================
+
+# Demo code for Q171
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q171.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 172: Placeholder implementation
+# =====================================================
+
+# Demo code for Q172
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q172.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 173: Placeholder implementation
+# =====================================================
+
+# Demo code for Q173
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q173.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 174: Placeholder implementation
+# =====================================================
+
+# Demo code for Q174
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q174.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 175: Placeholder implementation
+# =====================================================
+
+# Demo code for Q175
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q175.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 176: Placeholder implementation
+# =====================================================
+
+# Demo code for Q176
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q176.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 177: Placeholder implementation
+# =====================================================
+
+# Demo code for Q177
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q177.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 178: Placeholder implementation
+# =====================================================
+
+# Demo code for Q178
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q178.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 179: Placeholder implementation
+# =====================================================
+
+# Demo code for Q179
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q179.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 180: Placeholder implementation
+# =====================================================
+
+# Demo code for Q180
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q180.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 181: Placeholder implementation
+# =====================================================
+
+# Demo code for Q181
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q181.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 182: Placeholder implementation
+# =====================================================
+
+# Demo code for Q182
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q182.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 183: Placeholder implementation
+# =====================================================
+
+# Demo code for Q183
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q183.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 184: Placeholder implementation
+# =====================================================
+
+# Demo code for Q184
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q184.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
+# =====================================================
+# QUESTION 185: Placeholder implementation
+# =====================================================
+
+# Demo code for Q185
+raw = input("Enter elements (comma-separated): ")
+lst = [p.strip() for p in raw.split(",") if p.strip() != ""]
+print(lst)
+
+# Explanation:
+# 1) Placeholder; replace with real logic for Q185.
+# 2) Reads list and prints it.
+# 3) To be expanded.
+
+
+
